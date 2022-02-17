@@ -1,0 +1,1029 @@
+<template>
+  <div class="viewport">
+    <div class="column">
+      <div class="overview panel">
+        <div class="inner">
+          <div class="item">
+            <h4>2,190</h4>
+            <span>
+              <i class="icon-dot" style="color: #006cff"></i>
+              设备总数
+            </span>
+          </div>
+          <div class="item">
+            <h4>190</h4>
+            <span>
+              <i class="icon-dot" style="color: #6acca3"></i>
+              季度新增
+            </span>
+          </div>
+          <div class="item">
+            <h4>3,001</h4>
+            <span>
+              <i class="icon-dot" style="color: #6acca3"></i>
+              运营设备
+            </span>
+          </div>
+          <div class="item">
+            <h4>108</h4>
+            <span>
+              <i class="icon-dot" style="color: #ed3f35"></i>
+              异常设备
+            </span>
+          </div>
+        </div>
+      </div>
+      <!--监控-->
+      <div class="monitor panel">
+        <div class="inner">
+          <div class="tabs">
+            <a href="javascript:;" data-index="0" class="active">故障设备监控</a>
+            <a href="javascript:;" data-index="1">异常设备监控</a>
+          </div>
+          <div class="content" style="display: block;">
+            <div class="head">
+              <span class="col">故障时间</span>
+              <span class="col">设备地址</span>
+              <span class="col">异常代码</span>
+            </div>
+            <div class="marquee-view">
+              <div class="marquee">
+                <div class="row">
+                  <span class="col">20180701</span>
+                  <span class="col">11北京市昌平西路金燕龙写字楼</span>
+                  <span class="col">1000001</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190601</span>
+                  <span class="col">北京市昌平区城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190704</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000003</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20180701</span>
+                  <span class="col">北京市昌平区建路金燕龙写字楼</span>
+                  <span class="col">1000004</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190701</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000005</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190701</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000006</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190701</span>
+                  <span class="col">北京市昌平区建西路金燕龙写字楼</span>
+                  <span class="col">1000007</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190701</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000008</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190701</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000009</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190710</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000010</span>
+                  <span class="icon-dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="content">
+            <div class="head">
+              <span class="col">异常时间</span>
+              <span class="col">设备地址</span>
+              <span class="col">异常代码</span>
+            </div>
+            <div class="marquee-view">
+              <div class="marquee">
+                <div class="row">
+                  <span class="col">20190701</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000001</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190701</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190703</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190704</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190705</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190706</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190707</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190708</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190709</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+                <div class="row">
+                  <span class="col">20190710</span>
+                  <span class="col">北京市昌平区建材城西路金燕龙写字楼</span>
+                  <span class="col">1000002</span>
+                  <span class="icon-dot"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--点位-->
+      <div class="point panel">
+        <div class="inner">
+          <h3>点位分布统计</h3>
+          <div class="chart">
+            <div class="pie"></div>
+            <div class="data">
+              <div class="item">
+                <h4>320,11</h4>
+                <span>
+                  <i class="icon-dot" style="color: #ed3f35"></i>
+                  点位总数
+                </span>
+              </div>
+              <div class="item">
+                <h4>418</h4>
+                <span>
+                  <i class="icon-dot" style="color: #eacf19"></i>
+                  本月新增
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <!-- 地图 -->
+      <div class="map">
+        <h3>
+          <span class="icon-cube"></span>
+          设备数据统计
+        </h3>
+        <div class="chart">
+          <div class="geo"></div>
+        </div>
+      </div>
+      <!-- 用户 -->
+      <div class="users panel">
+        <div class="inner">
+          <h3>全国用户总量统计</h3>
+          <div class="chart">
+            <div class="bar"></div>
+            <div class="data">
+              <div class="item">
+                <h4>120,899</h4>
+                <span>
+                  <i class="icon-dot" style="color: #ed3f35"></i>
+                  用户总量
+                </span>
+              </div>
+              <div class="item">
+                <h4>248</h4>
+                <span>
+                  <i class="icon-dot" style="color: #eacf19"></i>
+                  本月新增
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="order panel">
+        <div class="inner">
+          <div class="c-title">商品品类销售额占比</div>
+          <!-- 筛选 -->
+          <div class="filter">
+            <a href="javascript:;" data-key="day365" class="active">365天</a>
+            <a href="javascript:;" data-key="day90">90天</a>
+            <a href="javascript:;" data-key="day30">30天</a>
+            <a href="javascript:;" data-key="day1">24小时</a>
+          </div>
+          <!-- 数据 -->
+          <div class="data">
+            <div class="item">
+              <h4>20,301,987</h4>
+              <span>
+                <i class="icon-dot" style="color: #ed3f35;"></i>
+                订单量
+              </span>
+            </div>
+            <div class="item">
+              <h4>99834</h4>
+              <span>
+                <i class="icon-dot" style="color: #eacf19;"></i>
+                销售额(万元)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 销售额 -->
+      <div class="sales panel">
+        <div class="inner">
+          <div class="caption">
+            <h3>销售额统计</h3>
+            <a href="javascript:;" class="active" data-type="year">年</a>
+            <a href="javascript:;" data-type="quarter">季</a>
+            <a href="javascript:;" data-type="month">月</a>
+            <a href="javascript:;" data-type="week">周</a>
+          </div>
+          <div class="chart">
+            <div class="label">单位:万</div>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 渠道 季度 -->
+      <div class="wrap">
+        <div class="channel panel">
+          <div class="inner">
+            <h3>渠道分布</h3>
+            <div class="data">
+              <div class="item">
+                <h4>39 <small>%</small></h4>
+                <span>
+                  <i class="icon-plane"></i>
+                  机场
+                </span>
+              </div>
+              <div class="item">
+                <h4>28 <small>%</small></h4>
+                <span>
+                  <i class="icon-bag"></i>
+                  商场
+                </span>
+              </div>
+            </div>
+            <div class="data">
+              <div class="item">
+                <h4>20 <small>%</small></h4>
+                <span>
+                  <i class="icon-train"></i>
+                  地铁
+                </span>
+              </div>
+              <div class="item">
+                <h4>13 <small>%</small></h4>
+                <span>
+                  <i class="icon-bus"></i>
+                  火车站
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="quarter panel">
+          <div class="inner">
+            <h3>一季度销售进度</h3>
+            <div class="chart">
+              <div class="box">
+                <div class="gauge"></div>
+                <div class="label">75<small> %</small></div>
+              </div>
+              <div class="data">
+                <div class="item">
+                  <h4>1,321</h4>
+                  <span>
+                    <i class="icon-dot" style="color: #6acca3"></i>
+                    销售额(万元)
+                  </span>
+                </div>
+                <div class="item">
+                  <h4>150%</h4>
+                  <span>
+                    <i class="icon-dot" style="color: #ed3f35"></i>
+                    同比增长
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 排行榜 -->
+      <div class="top panel">
+        <div class="inner">
+          <div class="all">
+            <h3>全国热榜</h3>
+            <ul>
+              <li>
+                <i class="icon-cup1" style="color: #d93f36;"></i>
+                可爱多
+              </li>
+              <li>
+                <i class="icon-cup2" style="color: #68d8fe;"></i>
+                娃哈啥
+              </li>
+              <li>
+                <i class="icon-cup3" style="color: #4c9bfd;"></i>
+                喜之郎
+              </li>
+            </ul>
+          </div>
+          <div class="province">
+            <h3>各省热销 <i class="date">// 近30日 //</i></h3>
+            <div class="data">
+              <ul class="sup">
+                <li>
+                  <span>北京</span>
+                  <span>25,179 <s class="icon-up"></s></span>
+                </li>
+                <li>
+                  <span>河北</span>
+                  <span>23,252 <s class="icon-down"></s></span>
+                </li>
+                <li>
+                  <span>上海</span>
+                  <span>20,760 <s class="icon-up"></s></span>
+                </li>
+                <li>
+                  <span>江苏</span>
+                  <span>23,252 <s class="icon-down"></s></span>
+                </li>
+                <li>
+                  <span>山东</span>
+                  <span>20,760 <s class="icon-up"></s></span>
+                </li>
+              </ul>
+              <ul class="sub">
+                <!-- <li><span>数据</span><span> 数据<s class="icon-up"></s></span></li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import api from '@/js/api';
+export default {
+  name: 'activeGuid',
+  data() {
+    return {};
+  },
+  methods: {},
+  created() {
+    this.$get(api.productCateSaleData('2021-08-31', '2021-08-31')).then(res => {
+      debugger;
+      console.log(res);
+    });
+  },
+  mounted() {},
+};
+</script>
+<style lang="scss">
+body {
+  line-height: 1.15;
+  font-size: 0.5rem;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-position: 0 0 / cover;
+  background-color: #101129;
+}
+.viewport {
+  /* 限定大小 */
+  min-width: 1024px;
+  max-width: 1920px;
+  min-height: 780px;
+  margin: 0 auto;
+  //background: url(../asset/images/logo.png) no-repeat 0 0 / contain;
+  display: flex;
+  padding: 3.667rem 0.833rem 0;
+}
+.column {
+  flex: 3;
+  position: relative;
+}
+.column:nth-child(2) {
+  flex: 4;
+  margin: 1.333rem 0.833rem 0;
+}
+.panel {
+  /* 边框 */
+  box-sizing: border-box;
+  border: 2px solid red;
+  border-image: url(../asset/images/border.png) 51 38 21 132;
+  border-width: 2.125rem 1.583rem 0.875rem 5.5rem;
+  position: relative;
+  margin-bottom: 0.833rem;
+}
+.panel .inner {
+  /* 装内容 */
+  /* height: 60px; */
+  position: absolute;
+  top: -2.125rem;
+  right: -1.583rem;
+  bottom: -0.875rem;
+  left: -5.5rem;
+  padding: 1rem 1.5rem;
+}
+.panel h3 {
+  font-size: 0.833rem;
+  color: #fff;
+}
+/* 概览区域 */
+.overview {
+  height: 4.583rem;
+}
+.overview .inner {
+  display: flex;
+  justify-content: space-between;
+}
+.overview h4 {
+  font-size: 1.167rem;
+  padding-left: 0.2rem;
+  color: #fff;
+  margin-bottom: 0.333rem;
+}
+.overview span {
+  font-size: 0.667rem;
+  color: #4c9bfd;
+}
+/* 监控 */
+.monitor {
+  height: 20rem;
+}
+.monitor .inner {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}
+.monitor .tabs {
+  padding: 0 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.monitor .tabs a {
+  color: #1950c4;
+  font-size: 0.75rem;
+  padding: 0 1.125rem;
+}
+
+.monitor .tabs a:first-child {
+  border-right: 0.083rem solid #00f2f1;
+  padding-left: 0;
+}
+
+.monitor .tabs a.active {
+  color: #fff;
+}
+.monitor .content {
+  flex: 1;
+  display: none;
+  position: relative;
+}
+.monitor .head {
+  background: rgba(255, 255, 255, 0.1);
+  font-size: 0.583rem;
+  padding: 0.5rem 1.5rem;
+  color: #68d8fe;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.05;
+}
+.monitor .col:nth-child(1) {
+  width: 3.2rem;
+}
+.monitor .col:nth-child(2) {
+  width: 8.4rem;
+  /* 不换行  一行省略*/
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.monitor .col:nth-child(3) {
+  width: 3.2rem;
+}
+.monitor .marquee-view {
+  position: absolute;
+  top: 1.6rem;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.monitor .row {
+  line-height: 1.05;
+  padding: 0.5rem 1.5rem;
+  color: #61a8ff;
+  font-size: 0.5rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.monitor .row:hover {
+  color: #68d8ff;
+  background: rgba(255, 255, 255, 0.1);
+}
+.monitor .row:hover .icon-dot {
+  opacity: 1;
+}
+
+.monitor .icon-dot {
+  position: absolute;
+  left: 0.64rem;
+  opacity: 0;
+}
+.monitor .marquee-view {
+  position: absolute;
+  top: 1.6rem;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.monitor .row {
+  line-height: 1.05;
+  padding: 0.5rem 1.5rem;
+  color: #61a8ff;
+  font-size: 0.5rem;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+}
+.monitor .row:hover {
+  color: #68d8ff;
+  background: rgba(255, 255, 255, 0.1);
+}
+.monitor .row:hover .icon-dot {
+  opacity: 1;
+}
+
+.monitor .icon-dot {
+  position: absolute;
+  left: 0.64rem;
+  opacity: 0;
+}
+/* ------------------------------------------------------------动画 */
+@keyframes row {
+  0% {
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+/* 调用动画 */
+.monitor .marquee {
+  /* //infinite永久调用动画 */
+  animation: row 10s linear infinite;
+}
+/*鼠标划入 停止动画  */
+.monitor .marquee:hover {
+  animation-play-state: paused;
+}
+/* 点位 */
+.point {
+  height: 14.167rem;
+}
+.point .chart {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: space-between;
+}
+.point .pie {
+  width: 13rem;
+  height: 10rem;
+  margin-left: -0.4rem;
+}
+.point .data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 7rem;
+  padding: 1.5rem 1.25rem;
+  box-sizing: border-box;
+  background-image: url(../asset/images/rect.png);
+  background-size: cover;
+}
+.point h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.167rem;
+  color: #fff;
+}
+.point span {
+  display: block;
+  color: #4c9bfd;
+  font-size: 0.667rem;
+}
+/* 地图  */
+.map {
+  height: 24.1rem;
+  margin-bottom: 0.833rem;
+  display: flex;
+  flex-direction: column;
+}
+.map h3 {
+  line-height: 1;
+  padding: 0.667rem 0;
+  margin: 0;
+  font-size: 0.833rem;
+  color: #fff;
+}
+.map .icon-cube {
+  color: #68d8fe;
+}
+.map .chart {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.map .geo {
+  width: 100%;
+  height: 100%;
+}
+/* 用户模块 */
+.users {
+  height: 14.167rem;
+  display: flex;
+}
+.users .chart {
+  display: flex;
+  margin-top: 1rem;
+}
+.users .bar {
+  width: 24.5rem;
+  height: 10rem;
+}
+.users .data {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 7rem;
+  padding: 1.5rem 1.25rem;
+  box-sizing: border-box;
+  background-image: url(../asset/images/rect.png);
+  background-size: cover;
+}
+.users h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.167rem;
+  color: #fff;
+}
+.users span {
+  display: block;
+  color: #4c9bfd;
+  font-size: 0.667rem;
+}
+/* 订单 */
+.order {
+  height: 6.167rem;
+}
+.order .filter {
+  display: flex;
+}
+.order .filter a {
+  display: block;
+  height: 0.75rem;
+  line-height: 1;
+  padding: 0 0.75rem;
+  color: #1950c4;
+  font-size: 0.75rem;
+  border-right: 0.083rem solid #00f2f1;
+}
+.order .filter a:first-child {
+  padding-left: 0;
+}
+.order .filter a:last-child {
+  border-right: none;
+}
+.order .filter a.active {
+  color: #fff;
+  font-size: 0.833rem;
+}
+.order .data {
+  display: flex;
+  margin-top: 0.833rem;
+}
+.order .item {
+  width: 50%;
+}
+.order h4 {
+  font-size: 1.167rem;
+  color: #fff;
+  margin-bottom: 0.417rem;
+}
+.order span {
+  display: block;
+  color: #4c9bfd;
+  font-size: 0.667rem;
+}
+/* 销售区域 */
+.sales {
+  height: 10.333rem;
+}
+.sales .caption {
+  display: flex;
+  line-height: 1;
+}
+.sales h3 {
+  height: 0.75rem;
+  padding-right: 0.75rem;
+  border-right: 0.083rem solid #00f2f1;
+}
+.sales a {
+  padding: 0.167rem;
+  font-size: 0.667rem;
+  margin: -0.125rem 0 0 0.875rem;
+  border-radius: 0.125rem;
+  color: #0bace6;
+}
+.sales a.active {
+  background-color: #4c9bfd;
+  color: #fff;
+}
+.sales .inner {
+  display: flex;
+  flex-direction: column;
+}
+.sales .chart {
+  flex: 1;
+  padding-top: 0.6rem;
+  position: relative;
+}
+.sales .label {
+  position: absolute;
+  left: 1.75rem;
+  top: 0.75rem;
+  color: #4996f5;
+  font-size: 0.583rem;
+}
+.sales .line {
+  width: 100%;
+  height: 100%;
+}
+/* 渠道区块 */
+.wrap {
+  display: flex;
+}
+.channel,
+.quarter {
+  flex: 1;
+  height: 9.667rem;
+}
+.channel {
+  margin-right: 0.833rem;
+}
+.channel .data {
+  overflow: hidden;
+}
+.channel .item {
+  margin-top: 0.85rem;
+}
+.channel .item:first-child {
+  float: left;
+}
+.channel .item:last-child {
+  float: right;
+}
+.channel h4 {
+  color: #fff;
+  font-size: 1.333rem;
+  margin-bottom: 0.2rem;
+}
+.channel small {
+  font-size: 50%;
+}
+.channel span {
+  display: block;
+  color: #4c9bfd;
+  font-size: 0.583rem;
+}
+/* 季度区块 */
+.quarter .inner {
+  display: flex;
+  flex-direction: column;
+  margin: 0 -0.25rem;
+}
+.quarter .chart {
+  flex: 1;
+  padding-top: 0.75rem;
+}
+.quarter .box {
+  position: relative;
+}
+.quarter .label {
+  transform: translate(-50%, -30%);
+  color: #fff;
+  font-size: 1.25rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+.quarter .label small {
+  font-size: 50%;
+}
+.quarter .gauge {
+  height: 3.5rem;
+}
+.quarter .data {
+  display: flex;
+  justify-content: space-between;
+}
+.quarter .item {
+  width: 50%;
+}
+.quarter h4 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+.quarter span {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #4c9bfd;
+  font-size: 0.583rem;
+}
+/* 排行榜 */
+.top {
+  height: 11.8rem;
+}
+.top .inner {
+  display: flex;
+}
+.top .all {
+  display: flex;
+  flex-direction: column;
+  width: 7rem;
+  color: #4c9bfd;
+  font-size: 0.6rem;
+  vertical-align: middle;
+}
+.top .all ul {
+  padding-left: 0.5rem;
+  margin-top: 0.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.top .all li {
+  overflow: hidden;
+}
+.top .all [class^='icon-'] {
+  font-size: 1.5rem;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+.top .province {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+.top .province i {
+  padding: 0 0.5rem;
+  margin-top: 0.208rem;
+  float: right;
+  font-style: normal;
+  font-size: 0.583rem;
+  color: #0bace6;
+}
+.top .province s {
+  display: inline-block;
+  transform: scale(0.8);
+  text-decoration: none;
+}
+.top .province .icon-up {
+  color: #dc3c33;
+}
+.top .province .icon-down {
+  color: #36be90;
+}
+.top .province .data {
+  flex: 1;
+  display: flex;
+  margin-top: 0.6rem;
+}
+.top .province ul {
+  flex: 1;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.top .province ul li {
+  display: flex;
+  justify-content: space-between;
+}
+.top .province ul span {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.top .province ul.sup {
+  font-size: 0.583rem;
+}
+.top .province ul.sup li {
+  color: #4995f4;
+  padding: 0.5rem;
+}
+.top .province ul.sup li.active {
+  color: #a3c6f2;
+  background-color: rgba(10, 67, 188, 0.2);
+}
+.top .province ul.sub {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 0.5rem;
+  background-color: rgba(10, 67, 188, 0.2);
+}
+.top .province ul.sub li {
+  color: #52ffff;
+  padding: 0.417rem 0.6rem;
+}
+.clock {
+  position: absolute;
+  top: -1.5rem;
+  right: 1.667rem;
+  font-size: 0.833rem;
+  color: #0bace6;
+}
+.clock i {
+  margin-right: 5px;
+  font-size: 0.833rem;
+}
+@media screen and (max-width: 1600px) {
+  .top span {
+    transform: scale(0.9);
+  }
+  .top .province ul.sup li {
+    padding: 0.4rem 0.5rem;
+  }
+  .top .province ul.sub li {
+    padding: 0.23rem 0.5rem;
+  }
+  .quarter span {
+    transform: scale(0.9);
+  }
+}
+</style>
+<style scoped lang="scss">
+.c-title {
+  color: #fff;
+  margin-bottom: cn(12);
+}
+</style>

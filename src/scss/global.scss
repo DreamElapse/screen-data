@@ -1,0 +1,18 @@
+/*375基准 一倍图*/
+@function n($a) {
+  @return $a/75 + rem;
+}
+/*375基准 二倍图*/
+@function dn($a) {
+  @return 2*$a/75 + rem;
+}
+
+@function v($a) {
+  @return $a/7.5 + vw;
+}
+
+@function cn($a){
+  @return $a/24 + rem;
+}
+
+

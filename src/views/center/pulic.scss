@@ -1,0 +1,717 @@
+@font-face {
+  font-family: customeFont;
+  src: url('../../scss/custome.ttf') format('truetype'),url('../../scss/custome2.eot') format('embedded-opentype');
+}
+body{
+  font-family:  Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+}
+.main-wrap {
+  // min-width: 1024px;
+  // width: 100%;
+  min-height: 860px;
+
+  min-width: 1024px;
+  width: 100%;
+  //min-height: 1200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+  //background: url("https://img.gaolvzongheng.com/img-static/bggg.b912bf7da284d764.png?x-oss-process=image/resize,p_100/format,webp/quality,q_80") no-repeat top center;
+  background: url("https://img.gaolvzongheng.com/img-static/bggg2.58132abf64705457.png") no-repeat top center;
+  background-size: 100% 100%;
+  .logo {
+    height: cn(138);
+    background: url(https://img.gaolvzongheng.com/img-static/banner.e99bcb092816db27.png) no-repeat top center;
+    background-size: contain;
+    position: relative;
+
+    .selectList2 {
+      width: cn(400);
+      display: flex;
+      align-items: center;
+      margin-left: cn(30);
+      font-size: cn(20);
+      // font-family: Microsoft YaHei;
+      font-weight: 400;
+      color: #FFFFFF;
+      .c-select {
+        // width: cn(200);
+        // transform: scale(0.8);
+        z-index: 999;
+        cursor: pointer;
+        // /deep/.vs__dropdown-menu {
+        //   background: #000;
+        // }
+        /deep/.vs__dropdown-option--highlight {
+          background: rgba($color: #fff, $alpha: 0.1);
+        }
+      }
+    }
+    p {
+      height: cn(40);
+      font-size: cn(40);
+      padding-top: cn(30);
+      // font-family: Microsoft YaHei;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: cn(40);
+      text-shadow: 0px 0px cn(20) rgba(3, 18, 52, 0.3);
+      text-align: center;
+    }
+    .date-box {
+      font-size: cn(18);
+      // font-family: Microsoft YaHei;
+      font-weight: bold;
+      color: #92b8fb;
+      position: absolute;
+      right: cn(30);
+      top: cn(54);
+    }
+  }
+  .viewport {
+    flex: 1;
+    // box-sizing: border-box;
+    // padding-bottom: cn(10);
+  }
+}
+.panel {
+  position: relative;
+  //margin-top: cn(37);
+  //margin-bottom: 0.833rem;
+  //ackground: rgba($color: #1e5ac6, $alpha: 0.1);
+  border-radius: 10px;
+  border: 2px solid red;
+  border-image: url(  https://img.gaolvzongheng.com/img-static/border.6e2dadcc1f150a7a.png
+  ) 10 10 10 10;
+  border-width: cn(6);
+  // border-width: 2.125rem 1.583rem 0.875rem 5.5rem;
+  h3 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top:cn(-37);
+    display: flex;
+    background: url(https://img.gaolvzongheng.com/img-static/title_bg.aa76987a9228c200.png) no-repeat;
+    width: cn(364);
+    height: cn(64);
+    background-size: contain;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    font-size: cn(20);
+    font-family:  Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+    color: #fff;
+  }
+  .h3-title{
+    width: cn(240);
+    background: url(https://img.gaolvzongheng.com/img-static/bg2.4ee95f17a4bc129b.png) no-repeat;
+    background-size: contain;
+
+  }
+  .inner {
+    
+  }
+}
+
+.viewport {
+  /* 限定大小 */
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  padding: 0 cn(40) cn(40) cn(40);
+  flex-shrink:0;
+}
+.column {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+}
+.column:nth-child(1) {
+  flex: 548;
+  // overflow-x: hidden;
+  display: flex;
+  flex-flow: column;
+  flex-shrink:0;
+  .f11{
+    flex: 32;
+    flex-shrink:0;
+
+  }
+  .f22{
+    flex-shrink:0;
+    flex: 51;
+  }
+  .f33{
+    flex-shrink:0;
+    flex: 51;
+  }
+  .panel {
+    flex: 259;
+    .inner {
+      height: 100%;
+    }
+  }
+  .panel:nth-child(1){
+   // height: cn(259);
+   //margin-top: cn(36);
+  }
+  .panel:nth-child(2){
+    //margin-top: cn(56);
+  }
+  .panel:nth-child(3){
+   // margin-top: cn(56);
+  }
+  .overview {
+    .inner {
+      display: flex;
+      flex-flow: column;
+      .wrap-legend {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: cn(35) cn(30) cn(0) cn(30);
+        .dw {
+          font-size: cn(14);
+          // font-family: Microsoft YaHei;
+          font-weight: 400;
+          color: #ffffff;
+        }
+        ul {
+          display: flex;
+          li {
+            margin-left: cn(30);
+            font-size: cn(14);
+            // font-family: Microsoft YaHei;
+            font-weight: 400;
+            color: #ffffff;
+            .circle {
+              display: inline-block;
+              width: cn(20);
+              height: cn(12);
+              margin-right: cn(4);
+              border-radius: cn(4);
+            }
+            .circle1 {
+              background: linear-gradient(-90deg, #398af6 0%, #55aff8 100%);
+            }
+            .circle2 {
+              background: linear-gradient(-90deg, #00b584 0%, #41e8bb 100%);
+            }
+          }
+        }
+      }
+
+      .sales-seven-day {
+        flex: 1;
+        padding: cn(20) cn(0) cn(15) cn(20);
+      }
+      .sales-seven-day2 {
+        flex: 1;
+        padding: cn(20) cn(0) cn(15) cn(20);
+      }
+      .user-seven-day {
+        flex: 1;
+        box-sizing: border-box;
+        padding: cn(20) cn(5) cn(10) cn(5);
+      }
+    }
+  }
+}
+.column:nth-child(2) {
+  flex: 650;
+  margin: 0 cn(30) 0;
+}
+.column:nth-child(3) {
+  flex: 548;
+  overflow-x: hidden;
+  display: flex;
+  flex-flow: column;
+  .f1{
+    flex: 32;
+  }
+  .f2{
+    flex: 51;
+  }
+  .f3{
+    flex: 51;
+  }
+  .right-c{
+    flex: 259;
+  }
+  .panel:nth-child(3){
+   // box-sizing: border-box;
+   // margin-top: cn(56);
+  }
+  .panel:nth-child(2){
+   // box-sizing: border-box;
+    //margin-top: cn(56);
+  }
+  .order-user {
+    flex: 272;
+    // margin-top: cn(24);
+    // .panel{
+    //   margin-top: 0;
+    // }
+  }
+}
+
+/* 概览区域 */
+.overview {
+ // height: 12rem;
+}
+
+.overview h4 {
+  font-size: 1.167rem;
+  padding-left: 0.2rem;
+  color: #fff;
+  margin-bottom: 0.333rem;
+}
+.overview span {
+  font-size: 0.667rem;
+  color: #4c9bfd;
+}
+
+/* 地图  */
+// .map {
+//   flex: 1;
+//   // margin-top: cn(17);
+//   // margin-bottom: 0.833rem;
+//   display: flex;
+//   flex-direction: column;
+// }
+.mapOuter {
+  //border: #ccc dashed 1px;
+  flex: 530;
+  box-sizing: border-box;
+}
+
+.map .chart {
+  // flex: 1;
+  // border: #ccc dotted 1px;
+  //background-color: rgba(255, 255, 255, 0.05);
+  height: 100%;
+}
+.map .geo {
+  width: 100%;
+  height: 100%;
+}
+/* 用户模块 */
+.users {
+  flex: 282;
+
+  color: #ffffff;
+  display: flex;
+  flex-flow: column;
+  .b1{
+    flex: 72;
+  }
+  .b2{
+    flex: 26;
+  }
+  padding: 0 cn(30) 0 cn(30);
+  background: url(https://img.gaolvzongheng.com/img-static/center_bg.394448a3fbf32c61.png) no-repeat;
+  background-size: 100% 100%;
+  // margin-top: cn(-10);
+  .data {
+    flex: 50;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    ul {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: space-between;
+      align-items: flex-end;
+      li {
+        flex: 2;
+        display: flex;
+
+        img {
+          width: cn(50);
+          height: cn(50);
+          margin-right: cn(12);
+        }
+        .data-des {
+          font-size: cn(28);
+          height: cn(24);
+          line-height: cn(28);
+          font-family: customeFont;
+          font-weight: 600;
+          color: #ffffff;
+          margin-bottom: cn(6);
+        }
+        .label {
+          font-size: cn(18);
+          height: cn(18);
+          line-height: cn(18);
+          font-family: Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+          font-weight: 400;
+          color: #92b8fb;
+        }
+      }
+      li:last-child {
+        flex: 1.22;
+      }
+    }
+  }
+  .salTotal {
+    display: flex;
+    font-size: cn(18);
+    margin-top: cn(12);
+    font-weight: bold;
+    justify-content: center;
+    span {
+      display: inline-block;
+      margin-left: cn(40);
+      color: #4c9bfd;
+    }
+  }
+  .b3{flex:36}
+  .amount-tit-des {
+   flex: 20;
+    font-size: cn(20);
+    // font-family: Microsoft YaHei;
+    font-weight: 400;
+    color: #ffffff;
+   
+    text-align: center;
+  }
+  .b4{
+    flex: 30;
+  }
+
+  .number-rolling-wrap1 {
+    width: 100%;
+    text-align: center;
+  }
+  .inner{
+    flex: 70;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .number-rolling {
+    width: 100%;
+    // display: flex;
+    // justify-content: center;
+    // align-items: self-end;
+    // transform: scale(0.8);
+    height: cn(56);
+    font-family: customeFont;
+    .com {
+      display: inline-block;
+      font-size: cn(38);
+      font-weight: 700;
+      color: #fff;
+      height: 100%;
+
+      line-height: cn(56);
+    }
+    .number-item {
+      position: relative;
+      display: inline-block;
+      width: cn(39);
+      height: cn(56);
+      background: url(https://img.gaolvzongheng.com/img-static/amount_bg.2dd5cf3771b329e7.png) no-repeat;
+      background-size: 100% 100%;
+      font-size: cn(48);
+      line-height: cn(56);
+      font-weight: bold;
+      color: #fff;
+      overflow: hidden;
+      font-family: customeFont;
+      // -webkit-box-shadow: 0 0 5px 0 rgb(0 150 255 / 60%);
+      //box-shadow: 0 0 5px 0 rgb(0 150 255 / 60%);
+      .number-list {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        -webkit-transition: 0.3s ease-in-out;
+        transition: 0.3s ease-in-out;
+        margin: 0 0 0.5vh;
+        span {
+          font-family: customeFont;
+          display: block;
+          text-align: center;
+          height: cn(56);
+          line-height: cn(64);
+          //line-height: 100%;
+        }
+        .qqbrow{
+          line-height: cn(56);
+        }
+      }
+    }
+  }
+  .number-rolling > li {
+    margin: 0 0.7%;
+  }
+
+  //background: rgba($color: #123475, $alpha: 0.5);
+  // border-radius: 4px;
+}
+
+.amount-user {
+  // padding-top: cn(24);
+  // padding-bottom: cn(24);
+  flex: 62;
+  ul {
+    display: flex;
+    li {
+      flex: 1;
+      text-align: center;
+      .amount {
+        font-size: cn(28);
+        font-family: customeFront;
+        font-weight: 600;
+        color: #ffffff;
+      }
+      .label {
+        font-size: cn(18);
+        // font-family: Microsoft YaHei;
+        font-weight: 400;
+        color: #92b8fb;
+        margin-top: cn(8);
+      }
+    }
+  }
+}
+
+/* 实时订单 用户数据分布 */
+
+.order-user {
+  display: flex;
+  margin-left: cn(-10);
+  .panel {
+    flex: 1;
+    margin-left: cn(10);
+    height:100%;
+  }
+  .order {
+    .inner{
+      height: 100%;
+    }
+    .orderList {
+      display: flex;
+      height: 100%;
+      
+    flex-flow: column;
+      .blank1{
+        flex: 24;
+      }
+      .head {
+        //background: rgba($color: #f9fbfc, $alpha: 0.1);
+        flex:46;
+
+        display: flex;
+        box-sizing: content-box;
+        align-items: center;
+        
+        padding-left: cn(6);
+        padding-right: cn(6);
+        .t-title {
+          display: flex;
+          flex: 1;
+          font-size: cn(16);
+          height: 100%;
+          align-items: center;
+          font-family: PingFangSC-Regular, PingFang SC;
+          font-weight: bold;
+          color: #92b8fb;
+          justify-content: center;
+        }
+      }
+      .wrap-list {
+        box-sizing: content-box;
+        // height: cn(160);
+        overflow: hidden;
+        padding: 0 cn(6);
+        display: flex;
+        flex-flow: column;
+        flex: 170;
+        .list {
+          height: 100%;
+          display: flex;
+          flex-flow: column;
+          // height: cn(160);
+          // overflow: hidden;
+          dl {
+            display: flex;
+            flex: 40;
+            //background: rgba($color: #fff, $alpha: 0.05);
+            dd {
+             display: flex;
+             align-items: center;
+             justify-content: center;
+              flex: 1;
+             height: 100%;
+              font-size: cn(14);
+              font-family: PingFangSC-Medium, PingFang SC;
+              font-weight: 500;
+              color: #fff;
+             
+            }
+            .amount {
+              color: #fff;
+            }
+          }
+          // dl:nth-child(even) {
+          //   background: rgba($color: #fafbfd, $alpha: 0.1);
+          // }
+          // dl:nth-child(odd) {
+          //   background: rgba($color: #fafbfd, $alpha: 0.05);
+          // }
+        }
+      }
+    }
+  }
+
+  .distribution {
+  
+    
+    .inner {
+      box-sizing: border-box;
+      height: 100%;
+      display: flex;
+      flex-flow: column;
+      .b1{
+        flex: 40;
+      }
+      .chart {
+        //height: 100%;
+        flex: 204;
+      }
+    }
+  }
+}
+
+.topsales {
+  //flex: 1;
+  .inner{
+    height: 100%;
+  }
+}
+/*近7日出乘车次数量 */
+.trainSetOff {
+  margin-bottom: 0;
+  .inner {
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+  }
+  .bar {
+    width: 100%;
+    flex: 1;
+    //box-sizing: content-box;
+    margin-top: cn(35);
+    margin-bottom: cn(10);
+  }
+}
+
+.lastOverView {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 1600px) {
+  .top span {
+    transform: scale(0.9);
+  }
+  .top .province ul.sup li {
+    padding: 0.4rem 0.5rem;
+  }
+  .top .province ul.sub li {
+    padding: 0.23rem 0.5rem;
+  }
+  .quarter span {
+    transform: scale(0.9);
+  }
+}
+
+.c-select {
+  width: cn(130);
+ /deep/.vs__search{
+  // display: none;
+  background:url(https://img.gaolvzongheng.com/img-static/input_bg.ea34fbea0ddf5871.png) no-repeat;
+ }
+}
+
+/deep/.vs__dropdown-menu {
+  // -webkit-box-shadow: 0 0 4px 3px #0b4291;
+  // box-shadow: 0 0 4px 1px #0b4291;
+  border: 1px solid #006AFF;
+  background: #081F41;
+  color: #fff;
+  left: cn(10);
+  width: cn(120);
+  min-width: cn(120)
+}
+/deep/.vs__dropdown-option {
+  color: #fff;
+  font-size: cn(20);
+font-family: PingFang SC;
+font-weight: 500;
+color: #FFFFFF;
+}
+/deep/.vs__dropdown-menu::-webkit-scrollbar {
+  width: 4px;
+  height: 6px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  background-color: hsla(0, 0%, 100%, 0.15);
+}
+/deep/.vs__dropdown-menu::-webkit-scrollbar-thumb {
+  background-color: hsla(0, 0%, 100%, 0.5);
+  border-radius: 10px;
+}
+/deep/.vs__dropdown-menu::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px hsl(0deg 0% 100% / 15%);
+  // box-shadow: inset 0 0 6px hsl(0deg 0% 100% / 15%);
+  border-radius: 10px;
+}
+/deep/.vs__dropdown-option--highlight {
+ // background: rgba(10, 67, 188, 1);
+ background: #081F41;
+}
+/deep/.vs__dropdown-toggle {
+  margin-left: cn(10);
+  height:cn(36) ;
+  line-height: cn(36);
+  border: 1px solid #006AFF;
+  font-size:cn(20);
+  box-shadow: 0px 0px cn(8) #006aff inset;
+// font-family: Microsoft YaHei;
+font-weight: 400;
+color: #FEFEFE;
+  // -webkit-box-shadow: 0 0 8px 3px #0b4291;
+  // box-shadow: 0 0 8px 3px #0b4291;
+//   -webkit-box-shadow:0 0 10px 15px #0b4291;
+
+// -moz-box-shadow:0 0 10px 15px #0b4291;
+
+// box-shadow:0 0 10px 15px #0b4291;
+  font-size: cn(20);
+}
+/deep/.vs__selected-options{
+  height:cn(30) ;
+}
+/deep/.vs__selected {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  margin-top: cn(2);
+  margin-left: cn(5);
+  align-items: center;
+  font-size: cn(20);
+  background: none;
+}
+/deep/.vs__open-indicator {
+  fill: rgba(255, 255, 255, 0.8);
+  transform: scale(0.5);
+}

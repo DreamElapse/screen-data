@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+*:not(input, textarea) {
+  /* H5禁用长摁选择文本 */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+
+html,body {
+  width: 100%;
+  height: 100%;
+}
+
+/*修改ios按钮默认样式*/
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+button {
+  -webkit-appearance: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: normal;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-touch-callout: none
+}
+
+a:focus,
+a:active {
+  outline: 0
+}
+
+em,
+i {
+  font-style: normal;
+}
+
+button {
+  border: none;
+  background: none;
+  outline: none;
+  /* 可解决ios 无法点击问题*/
+  cursor: pointer;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 0deg);
+  }
+
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 360deg);
+  }
+}

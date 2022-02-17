@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <meta http-equiv="Cache-Control" content="no-cache, must-revalidate" />
+    <link rel="stylesheet" href="./libs/css/index.css" />
+    <!-- 开启 safe-area-inset-bottom 属性 -->
+    <van-number-keyboard safe-area-inset-bottom />
+    <title>高旅纵横</title>
+    <style type="text/css"></style>
+    <script>
+      /*(function () {
+      function autoRootFontSize() {
+        document.documentElement.style.fontSize = Math.min(screen.width, document.documentElement.getBoundingClientRect().width) / 10 + 'px';
+      }
+      window.addEventListener('resize', autoRootFontSize);
+      autoRootFontSize();
+    })();*/
+      (function() {
+        // 1、页面一加载就要知道页面宽度计算
+        var setFont = function() {
+          // 因为要定义变量可能和别的变量相互冲突，污染，所有用自调用函数
+          var html = document.documentElement; // 获取html
+          // 获取宽度
+          var width = html.clientWidth;
+
+          // 判断
+          if (width < 1024) width = 1024;
+          if (width > 1920) width = 1920;
+          // 设置html的基准值
+          var fontSize = width / 80 + 'px';
+          // 设置给html
+          html.style.fontSize = fontSize;
+        };
+        setFont();
+        // 2、页面改变的时候也需要设置
+        // 尺寸改变事件
+        window.onresize = function() {
+          setFont();
+        };
+      })();
+    </script>
+  </head>
+
+  <body class="position-fixed">
+    <div  id="app">
+      <div class="loader"></div>
+    </div>
+  </body>
+</html>
