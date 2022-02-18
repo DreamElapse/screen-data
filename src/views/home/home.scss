@@ -22,6 +22,8 @@ body{
   background: url("../../asset/images/page_bg.png") no-repeat top center;
   background-size: 100% 100%;
   line-height: 1;
+  font-size: cn(14);
+  color: #FFF;
   .logo {
     height: cn(102);
     background: url("../../asset/images/page_title.png") no-repeat top center;
@@ -39,7 +41,7 @@ body{
 }
 
 .select-box{
-  width: cn(400);
+  width: cn(300);
   display: flex;
   align-items: center;
   font-size: cn(18);
@@ -202,6 +204,8 @@ body{
       margin-bottom: 0;
     }
   }
+
+
   /*中部*/
   .center-sec{
     margin-bottom: cn(20);
@@ -262,49 +266,56 @@ body{
     }
   }
 
+  .echarts-data{
+    flex: 1;
+  }
+
   /*左侧数据*/
   .left-content{
-    .epidemic{
-      padding: cn(20) 0 cn(4);
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-    .epidemic-data-item{
-      display: flex;
-      align-items: center;
-      // height: cn(46);
-      flex: 0 0 auto;
-      // margin-bottom: cn(26);
-    }
-    .epi-icon{
-      width: cn(46);
-      height: cn(46);
-      margin-right: cn(8);
-      flex: 0 0 auto;
-    }
-    .epi-right{
-      height: cn(46);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex: 1;
-      .epi-data{
+    .left-top{
+      .epidemic{
+        padding: cn(20) cn(6) cn(4);
+        flex: 1;
         display: flex;
-        color: #FFF;
-        justify-content: space-between;
-        font-size: cn(14);
-        margin-bottom: cn(12);
-        b{
-          font-family: bahnschrift;
-          font-size: cn(24);
-          margin-left: cn(10);
-        }
-        .num-text{
-
+        flex-direction: column;
+        justify-content: space-around;
+      }
+      .epidemic-data-item{
+        display: flex;
+        align-items: center;
+        // height: cn(46);
+        flex: 0 0 auto;
+        // margin-bottom: cn(26);
+      }
+      .epi-icon{
+        width: cn(46);
+        height: cn(46);
+        margin-right: cn(8);
+        flex: 0 0 auto;
+      }
+      .epi-right{
+        height: cn(46);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        .epi-data{
+          display: flex;
+          color: #FFF;
+          justify-content: space-between;
+          font-size: cn(14);
+          margin-bottom: cn(12);
+          b{
+            font-family: bahnschrift;
+            font-size: cn(24);
+            margin-left: cn(10);
+          }
+          .num-text{
+  
+          }
         }
       }
+    
       .bar-box{
         height: cn(8);
         border-radius: cn(8);
@@ -314,6 +325,10 @@ body{
           border-radius: cn(8);
         }
       }
+    }
+    .left-middle{
+      
+      
     }
   }
 
@@ -510,6 +525,148 @@ body{
         }
       }
     }
+
+    .right-middle{
+      padding: 0 cn(18);
+      .box-header{
+        justify-content: flex-end;
+      }
+    }
+
+    .right-bottom{
+      padding: 0 cn(18);
+      .echarts-data{
+        padding: cn(20) cn(6);
+      }
+    }
+  }
+
+  /*公共样式*/
+  .sec-data{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: cn(15) cn(6) 0;
+  }
+  .box-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: cn(16);
+    height: cn(28);
+    .train-select{
+      display: flex;
+      align-items: center;
+      font-size: cn(14);
+      font-weight: 400;
+      color: #FFFFFF;
+      position: relative;
+      left: 0;
+      top: 0;
+      .select{
+        width: cn(118);
+        height: cn(28);
+        line-height: cn(28);
+        margin-left: cn(12);
+        cursor: pointer;
+        position: relative;
+        border-radius: cn(4);
+        border: 1px solid #006AFF;
+        user-select: none;
+        background: #0C2147;
+        box-shadow: 0 0 8px 0 rgba(0,106,255,0.5) inset;
+      }
+      .icon{
+        position: absolute;
+        right: cn(11);
+        top: cn(9);
+        transform-origin: cn(6) cn(3);
+        width: 0;
+        height: 0;
+        border: cn(6) solid #fff;
+        border-right: cn(6) solid transparent;
+        border-left: cn(6) solid transparent;
+        border-bottom: cn(6) solid transparent;
+        transition: all 0.2s;
+        &.active{
+          transform: rotate(180deg);
+        }
+      }
+      .context{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        background: transparent;
+        color: #FFF;
+        width: cn(118);
+        height: 100%;
+        font-size: cn(14);
+        padding-left: cn(11);
+        border: 0;
+      }
+      .select-list{
+        position: absolute;
+        top: cn(26);
+        left: -1px;
+        width: cn(118);
+        z-index: 10;
+        box-shadow: 0 0 8px 0 transparent;
+        height: 0;
+        overflow: hidden;
+        transition: all 0.2s;
+        border: 1px solid transparent;
+        &::-webkit-scrollbar{
+          width: 4px;
+          height: 6px;
+          transition: all 0.2s;
+          background-color: rgba(255, 255, 255, 0.15);
+        }
+        &::-webkit-scrollbar-thumb{
+          background-color: rgba(255, 255, 255, 0.5);
+          border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb:hover{
+          background-color: rgba(255, 255, 255, 0.5);
+        }
+        &::-webkit-scrollbar-track{
+          box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5);
+          border-radius: 10px;
+        }
+        &:hover{
+          &::-webkit-scrollbar{
+            transition: all 0.2s;
+            width: 4px;
+            height: 6px;
+          }
+        }
+        &.active{
+          height: cn(140);
+          border: 1px solid #006AFF;
+          overflow-y: auto;
+          background: #0c2147;
+        }
+      }
+      .select-item{
+        width: cn(118);
+        height: cn(28);
+        font-size: cn(14);
+        line-height: cn(28);
+        text-align: center;
+        transition: all 0.2s;
+        display: block;
+        cursor: pointer;
+        &:hover{
+          background: rgba(255,255,255,0.1);
+        }
+      }
+    }
+    
+    .echarts-data{
+      
+    }
+  
   }
 
 }

@@ -1,5 +1,5 @@
 <template>
-  <div class="bar-data">
+  <div class="data-box">
     <div v-show="!hideChart" :id="chartId" style="width: 100%; height: 100%"></div>
     <div v-show="hideChart" class="no-data">暂无数据</div>
   </div>
@@ -7,6 +7,7 @@
 
 <script type="text/ecmascript-6">
   const COMPONENT_NAME = 'BAR_DATA'
+
 
   export default {
     name: COMPONENT_NAME,
@@ -22,8 +23,7 @@
         hideChart: false,
         myChart: '',
         data: {
-          x: ['1月1号', '1月2号', '1月3号', '1月4号', '1月5号', '1月6号', '1月7号'],
-          x1: ['广州南', '广州东', '长沙南', '深圳北', '佛山西', '潮汕'],
+          x: ['02-10', '02-11', '02-12', '02-13', '02-14', '02-15', '02-16'],
           series: [[], [], []]
         }
       }
@@ -51,17 +51,16 @@
       },
       // 纵向柱状图
       drawBar(data) {
-        
         this.hideChart = false
         this.$nextTick(() => {
           let xAxisData = data.xAx.length > 0 ? data.xAx : this.data.x
-          let seriesData = data.series.length > 0 ? data.series : this.data.series
+          let seriesData = data.series.length > 0 ? data.series : this.data.series[0]
           let el = document.getElementById(this.chartId)
           // this.$echarts.dispose(el) // 销毁之前的实例
           let myChart = this.$echarts.init(el)
           this.myChart = myChart
           window.addEventListener('resize', this.resize) // 加监听
-          let color = ['#c0f100', '#ff9952', '#008fff', '#6978fc', '#fe9275']
+          let color = ['#08E9FF']
           myChart.setOption(this.createBar(xAxisData, seriesData, color))
         })
       },
@@ -98,9 +97,6 @@
       },
       // 纵向柱状图
       createBar(xAxisData, seriesData, color) {
-        // let total = seriesData[0].map((item, index) => {
-        //   return (item+seriesData[1][index]+seriesData[2][index]).toFixed(1)
-        // })
         return {
           legend: {
             left: 'center',
@@ -110,8 +106,8 @@
             itemGap: 30,
             type: 'plain',
             align: 'auto',
-            // data: ['现金', '线上支付', '12306自营', '销售额'],
-            data: ['现金', '线上支付', '12306自营', '聚合收款'],
+            data: ['广州局'],
+            show: false,
             textStyle: {
               fontSize: 12,
               color: '#fff',
@@ -122,7 +118,7 @@
             left: 0,
             right: 0,
             bottom: '4%',
-            top: '20%',
+            top: '5%',
             containLabel: true
           },
           xAxis: {
@@ -130,6 +126,7 @@
             boundaryGap: true,
             data: xAxisData,
             nameGap: 20,
+            offset: 5,
             splitLine: {
               show: false,
               lineStyle: {
@@ -151,28 +148,23 @@
               }
             },
             axisLine: {
-              show: false,
+              show: true,
               lineStyle: {
-                color: '#1c3b70',
-                width: 0.5
+                color: '#CCE9FB',
+                width: 1
               }
             }
           },
           yAxis: {
             type: 'value',
-            // max: function(value) {
-            //   return Math.ceil((value.max + value.max/5))
-            // },
-            // name: "单位：万元",
-            // nameTextStyle: {
-            //   color: "#FFF"
-            // },
             splitLine: {
               show: true,
               lineStyle: {
-                color: '#1c3b70',
+                color: 'rgba(204, 233, 251, 0.1)',
+                type: 'dashed'
               }
             },
+            splitNumber: 2, 
             axisTick: {
               show: false
             },
@@ -192,119 +184,32 @@
             trigger: 'axis',
             padding: [5, 10],
             axisPointer: {
-              type: 'shadow'
+              type: 'none' // shadow
             },
+            backgroundColor: 'rgba(80,80,80,0.8)',
+            borderColor: 'rgba(0,0,0,0)',
             formatter(prams) {
-              let result = `<p style="color:#ffffff;font-size:0.8vw">${prams[0].name}</p>`
-              prams.slice(0, 4).forEach(function(item) {
-                result += `<p><span style="display:inline-block;margin-right:5px;margin-bottom:-1px;width:0.9vw;height:0.6vw;border-radius:0.1vw;background-color:${
-                  item.color
-                }"></span><span style="color:#ffffff;font-size:0.8vw;line-height: 0.8vw">${item.seriesName}: ¥${parseFloat(item.value).toLocaleString()}</span></p>`
-              })
+              let result = `<p style="color:#ffffff;font-size:0.8vw">${prams[0].axisValue}</p>`
+              result += `<p><span style="display:inline-block;margin-right:5px;margin-bottom:-1px;width:0.9vw;height:0.6vw;border-radius:0.1vw;background-color: #00EDF9"></span><span style="color:#ffffff;font-size:0.8vw;line-height: 0.8vw">${prams[0].seriesName}: ¥${parseFloat(prams[0].value).toLocaleString()}</span></p>`
+              
               return result
-              // `${prams[0].name}<br />12306订单：${prams[0].value}<br />旅客下单：${prams[1].value}<br />乘务下单：${prams[2].value}`
             }
           },
           series: [
             {
               type: 'bar',
-              name: '现金',
-              data: seriesData[0],
-              stack: 'one',
-              barWidth: '40%',
-              itemStyle: {
-                normal: {
-                  barBorderRadius: 0,
-                  color: color[0]
-                }
-              }
-            },
-            {
-              type: 'bar',
-              name: '线上支付',
-              data: seriesData[1],
-              stack: 'one',
-              barWidth: '40%',
-              itemStyle: {
-                normal: {
-                  barBorderRadius: 0,
-                  color: color[1]
-                }
-              }
-            },
-            {
-              type: 'bar',
-              name: '12306自营',
-              data: seriesData[2],
-              stack: 'one',
-              barWidth: '40%',
-              itemStyle: {
-                normal: {
-                  barBorderRadius: 0,
-                  color: color[2]
-                }
-              }
-            },
-            {
-              type: 'bar',
-              name: '聚合收款',
-              data: seriesData[3],
-              stack: 'one',
-              barWidth: '40%',
-              itemStyle: {
-                normal: {
-                  barBorderRadius: 0,
-                  color: color[3]
-                }
-              }
-            },
-            /* {
-              type: 'line',
-              show: false,
               name: '销售额',
-              smooth: false,
-              symbol: "circle", // 标记的图形为实心圆
-              symbolSize: 6,
+              data: seriesData,
+              stack: 'one',
+              barWidth: '30%',
+              
               itemStyle: {
-                normal: {
-                  color: "#fef375",
-                },
-                width: 1.5,
-                shadowColor: "#3D7EEB",
-                shadowBlur: 4
-              },
-              lineStyle: {
-                color: "#f5eb73",
-                width: 1.5,
-                shadowColor: "#3D7EEB",
-                shadowBlur: 4
-              },
-              data: seriesData[3],
-            }, */
-            {
-              name: "",
-              type: "bar",
-              symbolSize: 1,
-              symbol:'circle',
-              barGap: '-100%',
-              barWidth: '40%',
-              label: {
-                normal: {
-                  show: false,
-                  position: 'top',
-                  distance: '3',
-                  offset: [0, 0],
-                  color: '#89eaff',
-                  fontSize: '12'
-                }
-              },
-              itemStyle: {
-                normal: {
-                  color: 'rgba(0,0,0,0)',
-                  opacity: 1
-                }
-              },
-              data: seriesData[4]
+                color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  { offset: 0, color: 'rgba(8, 233, 255, 1)' },
+                  { offset: 1, color: 'rgba(0, 100, 254, 0)' }
+                ]),
+                
+              }
             }
           ]
         }
@@ -607,19 +512,13 @@
 </script>
 
 <style scoped lang="scss">
-  .bar-data{
+  .data-box{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     pointer-events: auto;
     position: relative;
-
-    
-    #barData{
-      width: 100%;
-      height: 100%;
-    }
     .no-data{
       width: 100%;
       height: 100%;

@@ -61,20 +61,25 @@
             </p>
             <p class="title-deco"></p>
           </div>
-
-          <div class="box-header">
-            <div class="select-box" style="color:#fff">
-              <span>车底</span>
-              <div class="select">
-                <input v-model="selectContext" class="context" @input="inputTrain" @click.stop="showSelect = true">
-                <span :class="['icon', {'active': showSelect}]"></span>
-                <div :class="['select-list', {'active': showSelect}]">
-                  <span v-for="(item, index) in areaTempList" :key="index" class="select-item" @click.stop="selectItem(item, index)">{{item}}</span>
+          <div class="sec-data">
+            <div class="box-header">
+              <span>金额(万元)</span>
+              <div class="train-select" style="color:#fff">
+                <span>车底</span>
+                <div class="select">
+                  <input v-model="selectContext" class="context" @input="inputTrain" @click.stop="showSelect = true">
+                  <span :class="['icon', {'active': showSelect}]"></span>
+                  <div :class="['select-list', {'active': showSelect}]">
+                    <span v-for="(item, index) in areaTempList" :key="index" class="select-item" @click.stop="selectItem(item, index)">{{item}}</span>
+                  </div>
                 </div>
               </div>
             </div>
+            <div class="echarts-data">
+              <bar-data ref="bar" chartId="bar"> </bar-data>
+            </div>
           </div>
-          <bar-data ref="bar2" chartId="bar2"> </bar-data>
+          
 
         </div>
         <!--左三小数据模块-->
@@ -88,6 +93,9 @@
             <p class="title-deco"></p>
           </div>
 
+          <div class="sec-data">
+             <DataScroll :list="goodsSalesRank" />
+          </div>
         </div>
       </div>
       <div class="center-content main-content">
@@ -238,6 +246,24 @@
             </p>
             <p class="title-deco"></p>
           </div>
+
+          <div class="sec-data">
+            <div class="box-header">
+              <div class="train-select" style="color:#fff">
+                <span>品类</span>
+                <div class="select">
+                  <input v-model="selectContext" class="context" @input="inputTrain" @click.stop="showSelect = true">
+                  <span :class="['icon', {'active': showSelect}]"></span>
+                  <div :class="['select-list', {'active': showSelect}]">
+                    <span v-for="(item, index) in areaTempList" :key="index" class="select-item" @click.stop="selectItem(item, index)">{{item}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="echarts-data">
+              <pie-data ref="pie" chartId="pie"></pie-data>
+            </div>
+          </div>
         </div>
         <div class="small-sec right-bottom">
           <!--模块标题-->
@@ -248,6 +274,10 @@
             </p>
             <p class="title-deco"></p>
           </div>
+
+          <div class="echarts-data">
+              <line-data ref="line" chartId="line"> </line-data>
+            </div>
         </div>
       </div>
 
@@ -267,6 +297,9 @@ import dayjs from 'dayjs';
 import numberRolling from '@/components/number-rolling/index.vue';
 import MapData from './components/map-data'
 import BarData from './components/bar-data'
+import LineData from './components/line-data'
+import PieData from './components/pie-data'
+import DataScroll from './components/data-scroll'
 // import MapInfo from './components/map';
 
 
@@ -316,12 +349,22 @@ export default {
       todayData: {}, //今日数据
       currentOrder: [], //实时订单
       userOrigin: {}, //用户来源分布
+      goodsSalesRank: [{
+        rank: 1,
+        name: '矿泉水',
+        cate: '水',
+        num: '100',
+        money: '100.00'
+      }]
     };
   },
   components: {
     numberRolling,
     MapData,
-    BarData
+    BarData,
+    LineData,
+    PieData,
+    DataScroll
   },
   computed: {
     qqbrow() {
@@ -472,6 +515,9 @@ export default {
       this.getCurrentOrder(1200);
       //今日数据
       this.getTodayData();
+      this.$refs.bar && this.$refs.bar.drawBar({xAx: [], series: []})
+      this.$refs.line && this.$refs.line.drawLine({xAx: [], series: []})
+      this.$refs.pie && this.$refs.pie.drawPie([]) // params:[{value: 10, name: 'xxx'}]
 
     })
 
