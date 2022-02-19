@@ -94,7 +94,27 @@
           </div>
 
           <div class="sec-data">
-             <DataScroll :list="goodsSalesRank" />
+            <DataScroll :list="goodsSalesRank" />
+            <div class="order-data">
+              <cssSeamlessScroll
+                :class-option="defaultOption"
+                v-if="orderDataList.length > 0"
+                ref="cssScroll"
+                :data="orderDataList"
+                class="wrap-list"
+              >
+                <div class="order-data-item" :key="index" v-for="(item, index) in orderDataList">
+                  <p class="data-left">
+                    <span class="left-icon"></span>
+                    <span class="title-text">实时订单{{index}}</span>
+                  </p>
+                  <p class="data-text">12:00:00</p>
+                  <p class="data-text">南昌局</p>
+                  <p class="data-text">G1600</p>
+                  <p class="data-text">¥20</p>
+                </div>
+              </cssSeamlessScroll>
+            </div>
           </div>
         </div>
       </div>
@@ -226,6 +246,11 @@
                 <span class="title-text">今日车底下单Top10</span>
               </p>
             </div>
+
+            <div class="sec-data">
+              <OrderScroll :list="orderRankData" />
+            </div>
+
           </div>
           <div class="top-right">
             <!--模块标题-->
@@ -293,6 +318,7 @@
 <script>
 import api from '@/js/api';
 import dayjs from 'dayjs';
+import cssSeamlessScroll from 'vue-seamless-scroll';
 
 import numberRolling from '@/components/number-rolling/index.vue';
 import MapData from './components/map-data'
@@ -300,6 +326,7 @@ import BarData from './components/bar-data'
 import LineData from './components/line-data'
 import PieData from './components/pie-data'
 import DataScroll from './components/data-scroll'
+import OrderScroll from './components/order-scroll'
 // import MapInfo from './components/map';
 
 
@@ -349,13 +376,20 @@ export default {
       todayData: {}, //今日数据
       currentOrder: [], //实时订单
       userOrigin: {}, //用户来源分布
-      goodsSalesRank: [{
-        rank: 1,
-        name: '矿泉水',
-        cate: '水',
-        num: '100',
-        money: '100.00'
-      }]
+      goodsSalesRank: [
+        { name: '矿泉水', cate: '水', num: '100', money: '100.00' },
+        { name: '矿泉水', cate: '水', num: '100', money: '100.00' },
+        { name: '矿泉水', cate: '水', num: '100', money: '100.00' },
+        { name: '矿泉水', cate: '水', num: '100', money: '100.00' },
+        { name: '矿泉水', cate: '水', num: '100', money: '100.00' },
+      ],
+      orderDataList: [1, 2, 3],
+      orderRankData: [
+        { train: 'G1600', orderNum: '100', name: '张三', money: '100' },
+        { train: 'G1600', orderNum: '100', name: '张三', money: '100' },
+        { train: 'G1600', orderNum: '100', name: '张三', money: '100' },
+        { train: 'G1600', orderNum: '100', name: '张三', money: '100' },
+      ]
     };
   },
   components: {
@@ -364,12 +398,23 @@ export default {
     BarData,
     LineData,
     PieData,
-    DataScroll
+    DataScroll,
+    cssSeamlessScroll,
+    OrderScroll
   },
   computed: {
     qqbrow() {
       return navigator.userAgent.toLowerCase().indexOf('qqbrowser') > -1;
     },
+    defaultOption() {
+      return {
+        step: 0, // 滚动速度(本效果设定为0.8~4)
+        limitMoveNum: 2, // 重复列表数
+        direction: 1, // 方向
+        singleHeight: 40, // 单次滚动高度(有单次滚动高度才会开启单次滚动)
+        waitTime: 2000, // 单次滚动等待时间
+      }
+    }
   },
   methods: {
     getWeekDate() {

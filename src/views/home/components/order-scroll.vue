@@ -2,10 +2,10 @@
   <div class="topList">
     <div class="head">
       <div class="item">排行</div>
-      <div class="item">商品名称</div>
-      <div class="item">所属分类</div>
-      <div class="item">销售数量</div>
-      <div class="item">销售金额</div>
+      <div class="item">车底</div>
+      <div class="item">单量</div>
+      <div class="item">班组/乘务长</div>
+      <div class="item">金额</div>
     </div>
     <div class="wrapBoday">
       <cssSeamlessScroll
@@ -22,9 +22,9 @@
             <img v-else-if="index == 2" :src="num3" />
             <span class="list-num" v-else>{{ index + 1 }}</span>
           </div>
+          <div class="td">{{ item.train }}</div>
+          <div class="td">{{ item.orderNum }}</div>
           <div class="td">{{ item.name }}</div>
-          <div class="td">{{ item.cate }}</div>
-          <div class="td">{{ item.num }}</div>
           <div class="td">¥{{ toThousands(item.money) }}</div>
         </div>
       </cssSeamlessScroll>
@@ -60,7 +60,7 @@ export default {
     defaultOption() {
       return {
         step: 0.2, // 数值越大速度滚动越快
-        //limitMoveNum: 5, // 开始无缝滚动的数据量 this.dataList.length
+        limitMoveNum: 2, // 开始无缝滚动的数据量 this.dataList.length
         //hoverStop: false, // 是否开启鼠标悬停stop
         direction: 1, // 0向下 1向上 2向左 3向右
         // openWatch: false, // 开启数据实时监控刷新dom
@@ -80,7 +80,7 @@ export default {
 <style lang="scss" scoped>
 .topList {
   // height: 100%;
-  padding: 0 cn(30);
+  padding: 0 cn(10);
   display: flex;
   flex-flow: column;
   flex: 160;
@@ -98,10 +98,16 @@ export default {
     align-items: center;
     .item {
       text-align: center;
-      width: cn(120);
+      width: cn(60);
     }
     .item:nth-child(1) {
-      width: cn(42);
+      width: cn(50);
+    }
+    .item:nth-child(2) {
+      width: cn(60);
+    }
+    .item:nth-child(4) {
+      width: cn(120);
     }
     
   }
@@ -125,7 +131,7 @@ export default {
         justify-content: center;
         height: cn(42.5);
         height: 3.4vh;
-        width: cn(120);
+        width: cn(60);
         color: rgba($color: #fff, $alpha: 1);
         font-size: cn(14);
         font-family: PingFang SC;
@@ -144,12 +150,17 @@ export default {
         }
       }
       .td:nth-child(1) {
-        width: cn(42);
+        width: cn(50);
+      }
+      .td:nth-child(2) {
+        width: cn(60);
+      }
+
+      .td:nth-child(4) {
+        width: cn(120);
       }
     }
-    .tr:nth-child(2n-1) {
-        background: url("../../../asset/images/row_bg.png") repeat-x;
-      }
+    
   }
   .b2 {
     flex: 12;
