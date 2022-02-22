@@ -194,6 +194,7 @@ body{
   .center-content{
     flex: 710;
     margin: 0 cn(28);
+    background: none;
   }
   /*左右模块*/
   .small-sec{
@@ -379,74 +380,71 @@ body{
   /*中间数据*/
   .center-content{
     .center-top{
+      display: flex;
+      flex-direction: column;
       .data {
-        flex: 50;
+        flex: 76;
         display: flex;
         justify-content: center;
-        align-items: flex-end;
+        align-items: center;
         width: 100%;
         ul {
           display: flex;
           width: 100%;
           height: 100%;
           justify-content: space-between;
-          align-items: flex-end;
+          align-items: center;
           li {
             flex: 2;
             display: flex;
-    
+            align-items: center;
             img {
-              width: cn(50);
-              height: cn(50);
-              margin-right: cn(12);
+              width: cn(76);
+              height: cn(76);
+              margin-right: cn(5);
             }
             .data-des {
               font-size: cn(28);
-              height: cn(24);
-              line-height: cn(28);
-              font-family: customeFont;
+              font-family: bahnschrift;
               font-weight: 600;
               color: #ffffff;
-              margin-bottom: cn(6);
+              margin-bottom: cn(7);
             }
             .label {
               font-size: cn(18);
-              height: cn(18);
-              line-height: cn(18);
               font-family: Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
               font-weight: 400;
-              color: #92b8fb;
+              color: #76A4FF;
             }
           }
           li:last-child {
-            flex: 1.22;
+            flex: 1.35;
           }
         }
       }
-      .salTotal {
-        display: flex;
-        font-size: cn(18);
-        margin-top: cn(12);
-        font-weight: bold;
-        justify-content: center;
-        span {
-          display: inline-block;
-          margin-left: cn(40);
-          color: #4c9bfd;
-        }
-      }
-      .b3{flex:36}
       .amount-tit-des {
-       flex: 20;
+        flex: 40;
+        width: cn(230);
+        height: cn(46);
         font-size: cn(20);
-        // font-family: Microsoft YaHei;
+        font-family: titlefont;
         font-weight: 400;
         color: #ffffff;
-       
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url('../../asset/images/num_bg.png');
+        background-size: 100% 100%;
+        margin: 0 auto;
       }
-      .b4{
+      .flex-30{
         flex: 30;
+      }
+      .flex-20{
+        flex: 20;
+      }
+      .flex-15{
+        flex: 15;
       }
     
       .number-rolling-wrap1 {
@@ -461,36 +459,31 @@ body{
       }
       .number-rolling {
         width: 100%;
-        // display: flex;
-        // justify-content: center;
-        // align-items: self-end;
-        // transform: scale(0.8);
-        height: cn(56);
-        font-family: customeFont;
+        height: cn(70);
+        font-family: bahnschrift;
+        display: flex;
         .com {
           display: inline-block;
-          font-size: cn(38);
+          font-size: cn(54);
           font-weight: 700;
-          color: #fff;
+          color: #00EBF8;
           height: 100%;
     
-          line-height: cn(56);
+          line-height: cn(70);
         }
         .number-item {
           position: relative;
           display: inline-block;
-          width: cn(39);
-          height: cn(56);
-          background: url(https://img.gaolvzongheng.com/img-static/amount_bg.2dd5cf3771b329e7.png) no-repeat;
+          width: cn(50);
+          height: cn(70);
+          background: #102C69;
           background-size: 100% 100%;
-          font-size: cn(48);
-          line-height: cn(56);
+          font-size: cn(54);
+          line-height: cn(70);
           font-weight: bold;
-          color: #fff;
+          color: #00EBF8;
           overflow: hidden;
-          font-family: customeFont;
-          // -webkit-box-shadow: 0 0 5px 0 rgb(0 150 255 / 60%);
-          //box-shadow: 0 0 5px 0 rgb(0 150 255 / 60%);
+          font-family: bahnschrift;
           .number-list {
             position: absolute;
             top: 0;
@@ -501,21 +494,26 @@ body{
             transition: 0.3s ease-in-out;
             margin: 0 0 0.5vh;
             span {
-              font-family: customeFont;
+              font-family: bahnschrift;
               display: block;
               text-align: center;
-              height: cn(56);
-              line-height: cn(64);
+              height: cn(70);
+              line-height: cn(70);
               //line-height: 100%;
             }
             .qqbrow{
-              line-height: cn(56);
+              line-height: cn(70);
             }
           }
         }
       }
       .number-rolling > li {
         margin: 0 0.7%;
+      }
+      .yestoday-num{
+        font-size: cn(18);
+        text-align: center;
+        flex: 19;
       }
     }
     
@@ -524,25 +522,67 @@ body{
     }
 
     .center-bottom{
-      ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 cn(5);
+      .data-box{
         display: flex;
-        li {
-          flex: 1;
-          text-align: center;
-          .amount {
-            font-size: cn(28);
-            font-family: customeFront;
-            font-weight: 600;
-            color: #ffffff;
-          }
-          .label {
-            font-size: cn(18);
-            // font-family: Microsoft YaHei;
-            font-weight: 400;
-            color: #92b8fb;
-            margin-top: cn(8);
-          }
+        flex-direction: column;
+        flex: 1;
+        margin-right: cn(28);
+        &:last-child{
+          margin-right: 0;
         }
+      }
+      
+      .bottom-data-title{
+        border-bottom: 1px solid rgba(39,110,249,1);
+        border-image: linear-gradient(45deg, rgba(255,255,255,0.5), rgba(255,255,255,0)) 1;
+        display: flex;
+        align-items: center;
+        height: cn(40);
+      }
+      .left-icon{
+        display: block;
+        width: cn(10);
+        height: cn(14);
+        border-top: cn(5) solid #00ECFD;
+        border-right: cn(5) solid transparent;
+        border-left: cn(5) solid transparent;
+        border-bottom: cn(5) solid #286FFC;
+        margin-right: cn(5);
+      }
+      .title-text{
+        font-size: cn(22);
+        color: #FFF;
+        font-family: titlefont;
+      }
+      .data-row{
+        display: flex;
+        justify-content: space-between;
+        margin-top: cn(14);
+        padding-right: cn(14);
+        span{
+          display: inline-block;
+        }
+      }
+      .icon{
+        width: cn(10);
+        height: cn(10);
+        background: #00ECFD;
+        border-radius: 100%;
+        box-shadow: 0 0 5px 0 #00ECFD;
+        margin-right: cn(2);
+      }
+      .num{
+        font-size: cn(28);
+        color: #00ECFD;
+        margin-left: cn(8);
+        font-family: bahnschrift;
+      }
+      .unit{
+        color: #00ECFD;
       }
     }
 

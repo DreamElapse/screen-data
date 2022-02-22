@@ -1,464 +1,785 @@
 <template>
-  <div class="bar-data">
-    <div class="data-content">
-      <div v-show="!hideChart" :id="chartId" style="width: 100%; height: 100%"></div>
-      <div v-show="hideChart" class="no-data">暂无数据</div>
-    </div>
+  <div class="data-box">
+    <div class="map2"></div>
+    <div class="wrap-map" :id="chartId"></div>
   </div>
 </template>
-
-<script type="text/ecmascript-6">
-  const COMPONENT_NAME = 'BAR_DATA'
-
-  export default {
-    name: COMPONENT_NAME,
-    props: {
-      chartId: {
-        type: String,
-        default: 'bar'
-      }
+<script>
+let mapInfo = require('./chinaMap.json');
+export default {
+  name: 'mapdata',
+  props: {
+    chartId: {
+      type: String,
+      default: 'mapInfo',
     },
-    data() {
-      return {
-        tabIndex: 0,
-        hideChart: false,
-        myChart: '',
-        data: {
-          x: ['1月1号', '1月2号', '1月3号', '1月4号', '1月5号', '1月6号', '1月7号'],
-          series: []
-        }
-      }
-    },
-    computed: {},
-    watch: {},
-    mounted() {
-
-    // this.drawBar(this.data, '退货数')
-    },
-    beforeDestroy() {
-      this.myChart = ''
-      window.removeEventListener('resize', this.resize) // 取消监听
-    },
-    methods: {
-      resize() {
-        this.myChart && this.myChart.resize()
+  },
+  data: function() {
+    return {
+      tabIndex: 0,
+      hideChart: !1,
+      myChart: '',
+      data: {
+       
       },
-      random(itemNumber, max) {
-        return new Array(itemNumber).fill(1).map((item, index) => {
-          return Math.ceil(Math.random() * max)
-        })
-      },
-      // 地图
-      drawMap(data) {
-        this.hideChart = false
+    };
+  },
+  computed: {},
+  watch: {},
+  mounted: function() {},
+  beforeDestroy: function() {
+    (this.myChart = ''), window.removeEventListener('resize', this.resize);
+  },
+  methods: {
+    resize: function() {
+      this.myChart && this.myChart.resize();
+    },
+    random: function(t, e) {
+      return new Array(t).fill(1).map(function(t, a) {
+        return Math.ceil(Math.random() * e);
+      });
+    },
+    drawMap(area = 0) {
+      var e = this;
+      this.$echarts.registerMap('china', mapInfo),
+        (this.hideChart = !1),
         this.$nextTick(() => {
-          let el = document.getElementById(this.chartId)
-          // this.$echarts.dispose(el) // 销毁之前的实例
-          let myChart = this.$echarts.init(el)
-          this.myChart = myChart
-          window.addEventListener('resize', this.resize) // 加监听
-          myChart.setOption(this.createMap())
-        })
-      },
-      // 地图配置
-      createMap() {
-        let geoGpsMap = [113.27324, 23.15792]
-        let geoCoordMap = {
-          南京: [[118.8062, 31.9208], 159],
-          // 黑龙江: [[127.9688, 45.368], 355],
-          // 内蒙古: [[110.3467, 41.4899], 54],
-          // 吉林: [[125.8154, 44.2584], 10],
-          北京: [[116.4551, 40.2539], 3120],
-          // 辽宁: [[123.1238, 42.1216], 100],
-          石家庄: [[114.4995, 38.1006], 1679],
-          天津: [[117.4219, 39.4189], 1502],
-          // 山西: [[112.3352, 37.9413], 2698],
-          西安: [[109.1162, 34.2004], 2244],
-          兰州: [[103.5901, 36.3043], 622],
-          银川: [[106.3586, 38.1775], 2000],
-          // 青海: [[101.4038, 36.8207], 122],
-          // 新疆: [[87.9236, 43.5883], 731],
-          成都: [[103.9526, 30.7617], 925],
-          重庆: [[108.384366, 30.439702], 1480],
-          济南: [[117.1582, 36.8701], 79],
-          郑州: [[113.4668, 34.6234], 1817],
-          // 安徽: [[117.29, 32.0581], 208],
-          武汉: [[114.3896, 30.6628], 1209],
-          // 浙江: [[119.5313, 29.8773], 1418],
-          福州: [[119.4543, 25.9222], 1237],
-          南昌: [[116.0046, 28.6633], 1004],
-          长沙: [[113.0823, 28.2568], 1911],
-          贵阳: [[106.6992, 26.7682], 345],
-          昆明: [[102.9199, 25.4663], 1429],
-          广州: [[113.12244, 23.009505], 2242],
-          南宁: [[108.479, 23.1152], 2271],
-          海口: [[110.3893, 19.8516], 2159],
-          上海: [[121.4648, 31.2891], 2045],
-          合肥: [[117.30794, 31.79322], 895],
-          杭州: [[120.21201, 30.2084], 1534],
-        }
-        let cityList = {
-          南京: 159,
-          黑龙江: 355,
-          内蒙古: 54,
-          // 吉林:  10,
-          北京: 30,
-          辽宁: 100,
-          石家庄: 1679,
-          天津: 1,
-          山西: 2698,
-          西安: 1744,
-          兰州: 362,
-          银川: 429,
-          青海: 122,
-          新疆: 731,
-          成都: 3925,
-          重庆: 1480,
-          济南: 79,
-          郑州: 1017,
-          安徽: 208,
-          武汉: 1209,
-          浙江: 1418,
-          福州: 1237,
-          南昌: 1004,
-          长沙: 1511,
-          贵阳: 345,
-          昆明: 1429,
-          广州: 2242,
-          南宁: 2271,
-          海口: 59,
-          上海: 8,
-        }
+          var t = document.getElementById(e.chartId),
+            a = e.$echarts.init(t);
+          (e.myChart = a), window.addEventListener('resize', e.resize), a.setOption(e.createMap(area));
+        });
+    },
+    createMap: function(area) {
+      var geoCoordMap = {
+        新疆玛纳斯基地: [86.22, 44.3],
+        九江: [116.0, 29.7],
+        新乡: [116.402217, 35.311657],
+        ' ': [79.92, 37.12],
+        '  ': [86.85, 47.7],
+        若羌县: [88.17, 39.02],
+        上海: [121.4648, 31.2891],
+        东莞: [113.8953, 22.901],
+        东营: [118.7073, 37.5513],
+        中山: [113.4229, 22.478],
+        临汾: [111.4783, 36.1615],
+        临沂: [118.3118, 35.2936],
+        丹东: [124.541, 40.4242],
+        丽水: [119.5642, 28.1854],
+        乌鲁木齐: [87.9236, 43.5883],
+        佛山: [112.8955, 23.1097],
+        保定: [115.0488, 39.0948],
+        兰州: [103.5901, 36.3043],
+        包头: [110.3467, 41.4899],
+        北京: [116.4551, 40.2539],
+        北海: [109.314, 21.6211],
+        南京: [118.8062, 31.9208],
+        南宁: [108.479, 23.1152],
+        南昌: [116.0046, 28.6633],
+        南通: [121.1023, 32.1625],
+        厦门: [118.1689, 24.6478],
+        台州: [121.1353, 28.6688],
+        合肥: [117.29, 32.0581],
+        呼和浩特: [111.4124, 40.4901],
+        咸阳: [108.4131, 34.8706],
+        哈尔滨: [127.9688, 45.368],
+        唐山: [118.4766, 39.6826],
+        嘉兴: [120.9155, 30.6354],
+        大同: [113.7854, 39.8035],
+        大连: [122.2229, 39.4409],
+        天津: [117.4219, 39.4189],
+        太原: [112.3352, 37.9413],
+        威海: [121.9482, 37.1393],
+        宁波: [121.5967, 29.6466],
+        宝鸡: [107.1826, 34.3433],
+        宿迁: [118.5535, 33.7775],
+        常州: [119.4543, 31.5582],
+        广州: [113.5107, 23.2196],
+        廊坊: [116.521, 39.0509],
+        延安: [109.1052, 36.4252],
+        张家口: [115.1477, 40.8527],
+        徐州: [117.5208, 34.3268],
+        德州: [116.6858, 37.2107],
+        惠州: [114.6204, 23.1647],
+        成都: [103.9526, 30.7617],
+        扬州: [119.4653, 32.8162],
+        承德: [117.5757, 41.4075],
+        拉萨: [91.1865, 30.1465],
+        无锡: [120.3442, 31.5527],
+        日照: [119.2786, 35.5023],
+        昆明: [102.9199, 25.4663],
+        杭州: [119.5313, 29.8773],
+        枣庄: [117.323, 34.8926],
+        柳州: [109.3799, 24.9774],
+        株洲: [113.5327, 27.0319],
+        武汉: [114.3896, 30.6628],
+        汕头: [117.1692, 23.3405],
+        江门: [112.6318, 22.1484],
+        沈阳: [123.1238, 42.1216],
+        沧州: [116.8286, 38.2104],
+        河源: [114.917, 23.9722],
+        泉州: [118.3228, 25.1147],
+        泰安: [117.0264, 36.0516],
+        泰州: [120.0586, 32.5525],
+        济南: [117.1582, 36.8701],
+        济宁: [116.8286, 35.3375],
+        海口: [110.3893, 19.8516],
+        淄博: [118.0371, 36.6064],
+        淮安: [118.927, 33.4039],
+        深圳: [114.5435, 22.5439],
+        清远: [112.9175, 24.3292],
+        温州: [120.498, 27.8119],
+        渭南: [109.7864, 35.0299],
+        湖州: [119.8608, 30.7782],
+        湘潭: [112.5439, 27.7075],
+        滨州: [117.8174, 37.4963],
+        潍坊: [119.0918, 36.524],
+        烟台: [120.7397, 37.5128],
+        玉溪: [101.9312, 23.8898],
+        珠海: [113.7305, 22.1155],
+        盐城: [120.2234, 33.5577],
+        盘锦: [121.9482, 41.0449],
+        石家庄: [114.4995, 38.1006],
+        福州: [119.4543, 25.9222],
+        秦皇岛: [119.2126, 40.0232],
+        绍兴: [120.564, 29.7565],
+        聊城: [115.9167, 36.4032],
+        肇庆: [112.1265, 23.5822],
+        舟山: [122.2559, 30.2234],
+        苏州: [120.6519, 31.3989],
+        莱芜: [117.6526, 36.2714],
+        菏泽: [115.6201, 35.2057],
+        营口: [122.4316, 40.4297],
+        葫芦岛: [120.1575, 40.578],
+        衡水: [115.8838, 37.7161],
+        衢州: [118.6853, 28.8666],
+        西宁: [101.4038, 36.8207],
+        西安: [109.1162, 34.2004],
+        贵阳: [106.6992, 26.7682],
+        连云港: [119.1248, 34.552],
+        邢台: [114.8071, 37.2821],
+        邯郸: [114.4775, 36.535],
+        郑州: [113.4668, 34.6234],
+        鄂尔多斯: [108.9734, 39.2487],
+        重庆: [107.7539, 30.1904],
+        金华: [120.0037, 29.1028],
+        铜川: [109.0393, 35.1947],
+        银川: [106.3586, 38.1775],
+        镇江: [119.4763, 31.9702],
+        长春: [125.8154, 44.2584],
+        长沙: [113.0823, 28.2568],
+        长治: [112.8625, 36.4746],
+        阳泉: [113.4778, 38.0951],
+        青岛: [120.4651, 36.3373],
+        韶关: [113.7964, 24.7028],
+      };
 
-        let colors = ['#82b6fc', '#53f7ff']
-        return this.dataHandle(geoGpsMap, geoCoordMap, colors, cityList)
-      },
-      dataHandle(geoGpsMap, geoCoordMap, colors) {
+      var GZData = [
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '广州',
+            value: 100,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '海口',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '南宁',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '福州',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '昆明',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '贵阳',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '长沙',
+            value: 10,
+          },
+        ],
 
-        let mapData = []
-        let barData = []
-        let categoryData = []
-        for (let key in geoCoordMap) {
-          mapData.push({
-            year: '广州',
-            name: key,
-            value: geoCoordMap[key][1]/100,
-            value1: geoCoordMap[key][1]/100
-          })
-        }
-        mapData.sort(function sortNumber(a,b) { return a.value - b.value})
-        for (var j = 0; j < mapData.length; j++) {
-          barData.push(mapData[j].value1);
-          categoryData.push(mapData[j].name);
-        }
-        let chinaMap = require('./chinaMap.json')
-        this.$echarts.registerMap('china', chinaMap)
-        function convertData(data) {
-          var res = [];
-          for (var i = 0; i < data.length; i++) {
-            var geoCoord = geoCoordMap[data[i].name][0];
-            if (geoCoord) {
-              res.push({
-                name: data[i].name,
-                value: geoCoord.concat(data[i].value)
-              });
-            }
-          }
-          return res;
-        }
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '杭州',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '上海',
+            value: 10,
+          },
+        ],
 
-        function convertToLineData(data, gps) {
-          var res = [];
-          for (var i = 0; i < data.length; i++) {
-            var dataItem = data[i];
-            var toCoord = geoCoordMap[dataItem.name][0]
-            var fromCoord = gps; // 郑州
-            //  var toCoord = geoGps[Math.random()*3];
-            if (fromCoord && toCoord) {
-              res.push([{
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '南京',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '武汉',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '重庆',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '成都',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '西安',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '郑州',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '济南',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '石家庄',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '北京',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '天津',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '银川',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '广州',
+          },
+          {
+            name: '兰州',
+            value: 10,
+          },
+        ],
+      ];
+
+      var NCData = [
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '南昌',
+            value: '100',
+          },
+        ],
+
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '海口',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '南宁',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '福州',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '昆明',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '贵阳',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '长沙',
+            value: 10,
+          },
+        ],
+
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '杭州',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '上海',
+            value: 10,
+          },
+        ],
+
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '南京',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '武汉',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '重庆',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '成都',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '西安',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '郑州',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '济南',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '石家庄',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '北京',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '天津',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '银川',
+            value: 10,
+          },
+        ],
+        [
+          {
+            name: '南昌',
+          },
+          {
+            name: '兰州',
+            value: 10,
+          },
+        ],
+      ];
+
+
+      var planePath =
+        'path://M.6,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705';
+
+      var convertData = function(data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+          var dataItem = data[i];
+          var fromCoord = geoCoordMap[dataItem[0].name];
+          var toCoord = geoCoordMap[dataItem[1].name];
+          if (fromCoord && toCoord) {
+            res.push([
+              {
                 coord: fromCoord,
-                value: dataItem.value
-              }, {
+              },
+              {
                 coord: toCoord,
-              }]);
-            }
+              },
+            ]);
           }
-          return res;
         }
-        return {
-          timeline: {
-            data: '广州',
-            show: false,
-            axisType: 'category',
-          },
-          baseOption: {
-            animation: true,
-            animationDuration: 1000,
-            animationEasing: 'cubicInOut',
-            animationDurationUpdate: 1000,
-            animationEasingUpdate: 'cubicInOut',
-            grid: {
-              right: '1%',
-              top: '15%',
-              bottom: '10%',
-              width: '20%'
-            },
-            tooltip: {
-              trigger: 'axis', // hover触发器
-              axisPointer: { // 坐标轴指示器，坐标轴触发有效
-                type: 'shadow', // 默认为直线，可选为：'line' | 'shadow'
-                shadowStyle: {
-                  color: 'rgba(150,150,150,0.1)' // hover颜色
-                }
-              }
-            },
-            geo: {
-              show: true,
-              map: 'china',
-              roam: false,
-              zoom: 1.2,
-              center: [104.5, 35.5],
-              label: {
-                emphasis: {
-                  show: false
-                }
-              },
-              itemStyle: {
-                normal: {
-                  borderColor: colors[0],
-                  borderWidth: 1,
-                  areaColor: {
-                    type: 'radial',
-                    x: 0.5,
-                    y: 0.5,
-                    r: 0.8,
-                    colorStops: [{
-                      offset: 0,
-                      // color: 'rgba(147, 235, 248, 0)' // 0% 处的颜色
-                      color: 'rgba(6,63,158, 0.8)' // 0% 处的颜色
-                    }, {
-                      offset: 1,
-                      // color: 'rgba(147, 235, 248, .2)' // 100% 处的颜色
-                      color: 'rgba(6,63,158, .8)' // 100% 处的颜色
-                    }],
-                    globalCoord: false // 缺省为 false
-                  },
-                  // shadowColor: 'rgba(128, 217, 248, 0.2)',
-                  shadowColor: 'rgba(6,63,158, 0.8)',
-                  // shadowColor: 'rgba(255, 255, 255, 1)',
-                  shadowOffsetX: -2,
-                  shadowOffsetY: 2,
-                  shadowBlur: 10
-                },
-                emphasis: {
-                  areaColor: '#389BB7',
-                  borderWidth: 0
-                }
-              }
-            },
-          },
-          options: [
-            {
-              xAxis: {
-                type: 'value',
-                scale: true,
-                position: 'top',
-                min: 0,
-                boundaryGap: false,
-                splitLine: {
-                  show: false
-                },
-                axisLine: {
-                  show: false
-                },
-                axisTick: {
-                  show: false
-                },
-                axisLabel: {
-                  margin: 2,
-                  textStyle: {
-                    color: '#aaa'
-                  }
-                },
-              },
-              yAxis: {
-                type: 'category',
-                //  name: 'TOP 20',
-                nameGap: 16,
-                axisLine: {
-                  show: false,
-                  lineStyle: {
-                    color: '#ddd'
-                  }
-                },
-                axisTick: {
-                  show: false,
-                  lineStyle: {
-                    color: '#ddd'
-                  }
-                },
-                axisLabel: {
-                  show: false,
-                  interval: 0,
-                  textStyle: {
-                    color: '#ddd'
-                  }
-                },
-                data: categoryData
-              },
+        return res;
+      };
 
-              series: [
-                {
-                  // 文字和标志
-                  name: 'light',
-                  type: 'scatter',
-                  coordinateSystem: 'geo',
-                  data: convertData(mapData),
-                  symbolSize: function (val) {
-                    return val[2] / 9;
-                  },
-                  label: {
-                    normal: {
-                      formatter: '{b}',
-                      position: 'top',
-                      fontSize: 10,
-                      show: true
-                    },
-                    emphasis: {
-                      show: false
-                    }
-                  },
-                  itemStyle: {
-                    normal: {
-                      color: colors[1]
-                    }
-                  }
-                },
-                // 地图？
-                {
-                  type: 'map',
-                  map: 'china',
-                  geoIndex: 0,
-                  aspectScale: 0.75, // 长宽比
-                  showLegendSymbol: false, // 存在legend时显示
-                  label: {
-                    normal: {
-                      show: false
-                    },
-                    emphasis: {
-                      show: false,
-                      textStyle: {
-                        color: '#fff'
-                      }
-                    }
-                  },
-                  roam: true,
-                  itemStyle: {
-                    normal: {
-                      areaColor: '#031525',
-                      borderColor: '#FFFFFF',
-                    },
-                    emphasis: {
-                      areaColor: '#2B91B7'
-                    }
-                  },
-                  animation: false,
-                  data: mapData
-                },
-                // 地图点的动画效果
-                {
-                  //  name: 'Top 5',
-                  type: 'effectScatter',
-                  coordinateSystem: 'geo',
-                  data: convertData(mapData.sort(function (a, b) {
-                    return b.value - a.value;
-                  })),
-                  showEffectOn: 'render',
-                  rippleEffect: {
-                    brushType: 'stroke'
-                  },
-                  hoverAnimation: true,
-                  label: {
-                    normal: {
-                      formatter: '{b}',
-                      position: 'right',
-                      show: false
-                    }
-                  },
-                  symbolSize: function (val) {
-                    return val[2] / 5 // 圆环大小
-                  },
-                  symbol: 'circle',
-                  itemStyle: {
-                    normal: {
-                      show: false,
-                      color: colors[1],
-                      shadowBlur: 10,
-                      shadowColor: colors[1]
-                    }
-                  },
-                  zlevel: 1
-                },
-                // 地图线的动画效果
-                {
-                  type: 'lines',
-                  zlevel: 2,
-                  effect: {
-                    show: true,
-                    period: 4, // 箭头指向速度，值越小速度越快
-                    trailLength: 0.02, // 特效尾迹长度[0,1]值越大，尾迹越长重
-                    symbol: 'arrow', // 箭头图标
-                    symbolSize: 5, // 图标大小
-                  },
-                  lineStyle: {
-                    normal: {
-                      color: colors[1],
-                      width: 0.3, // 尾迹线条宽度
-                      opacity: 0.6, // 尾迹线条透明度
-                      curveness: .2 // 尾迹线条曲直度
-                    }
-                  },
-                  data: convertToLineData(mapData, geoGpsMap)
-                }
-              ]
-            }
-          ]
-        }
-        // myChart.setOption(optionXyMap)
+      var color = [];
+      var series = [];
+      let list = [];
+      if (area == 0) {
+        list = [
+          ['广州', GZData],
+          ['南昌', NCData],
+        ];
+        color = ['#2490ff', '#41e8bb', '#a6c84c'];
+      } else if (area == 1) {
+        list = [
+          //  ['广州', GZData],
+          ['南昌', NCData],
+        ];
+        color = ['#41e8bb', '#a6c84c'];
+      } else if (area == 2) {
+        list = [
+          ['广州', GZData],
+          //  ['南昌', NCData],
+        ];
+        color = ['#2490ff', '#41e8bb', '#a6c84c'];
       }
-    }
-  }
+      list.forEach(function(item, i) {
+        series.push(
+          {
+            name: item[0] + ' Top10',
+            type: 'lines',
+            animationDelay: function(idx) {
+              return idx * 1000;
+            },
+            zlevel: 1,
+            effect: {
+              show: true,
+              period: 4,
+              trailLength: 0.02,
+              symbol: 'arrow',
+              symbolSize: 5,
+            },
+            lineStyle: {
+              normal: {
+                color: color[i],
+                width: 0,
+                curveness: 0.2,
+              },
+            },
+            data: convertData(item[1]),
+          },
+          {
+            name: item[0] + ' Top10',
+            type: 'lines',
+            zlevel: 2,
+            // animationDelay: function(idx) {
+            //   return idx * 1000;
+            // },
+            effect: {
+              show: true,
+              period: 4,
+              trailLength: 0.02,
+              symbol: 'arrow',
+              symbolSize: 5,
+            },
+            lineStyle: {
+              normal: {
+                color: color[i],
+                // color: '#10c8f0',
+                width: 1,
+                opacity: 0.4,
+                curveness: 0.2,
+              },
+            },
+            data: convertData(item[1]),
+          },
+          {
+            name: item[0] + ' Top10',
+            type: 'effectScatter',
+            coordinateSystem: 'geo',
+            zlevel: 2,
+            rippleEffect: {
+              brushType: 'stroke',
+            },
+            // animationDelay: function(idx) {
+            //   return idx * 1000;
+            // },
+            label: {
+              normal: {
+                show: true,
+                position: 'right',
+                formatter: '{b}',
+                color: '#9ac7ed',
+                fontSize: 10,
+              },
+            },
+            symbolSize: function(val) {
+              return val[2] / 8;
+            },
+            itemStyle: {
+              normal: {
+                color: color[i],
+              },
+            },
+            data: item[1].map(function(dataItem) {
+              return {
+                name: dataItem[1].name,
+                value: geoCoordMap[dataItem[1].name].concat([dataItem[1].value]),
+              };
+            }),
+          },
+        );
+      });
+
+      let option = {
+        //backgroundColor: '#080a20',
+        title: {
+          left: 'left',
+          textStyle: {
+            color: '#fff',
+          },
+        },
+        geo: {
+          map: 'china',
+          zoom: 1.2,
+          label: {
+            color: '#fff',
+            shadowColor: 'transparent',
+            emphasis: {
+              show: false,
+            },
+          },
+          roam: false,
+          itemStyle: {
+            opacity: 0,
+            normal: {
+              areaColor: {
+                type: 'radial',
+                x: 0.5,
+                y: 0.5,
+                r: 0.8,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: 'rgba(6,63,158, 0)',
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgba(6,63,158, 0)',
+                  },
+                ],
+                globalCoord: !1,
+              },
+              borderColor: 'rgba(6,63,158, 0)',
+              shadowColor: 'rgba(6,63,158, 0.4)',
+              shadowOffsetX: -2,
+              shadowOffsetY: 2,
+              shadowBlur: 10,
+            },
+            emphasis: {
+              areaColor: 'rgba(6,63,158, 0)',
+              borderWidth: 0,
+            },
+          },
+        },
+        series: series,
+        // animationDelay: function(idx) {
+        //   // 越往后的数据延迟越大
+        //   return idx * 1000;
+        // },
+      };
+
+      return option;
+    },
+  },
+};
 </script>
-
-<style scoped lang="scss">
- 
-
-  .bar-data{
+<style lang="scss" scoped>
+.data-box {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .map2 {
+    position: absolute;
+    z-index: 10;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    .data-content{
-      width: 100%;
-      height: 100%;
-      position: relative;
-    }
-    #barData{
-      width: 100%;
-      height: 100%;
-    }
-    .no-data{
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #666;
-      font-size: cn(14);
-    }
+    background: url('../../../asset/images/map.png') no-repeat center center;
+    background-size: contain;
+    transform: scale(98%) rotate(5deg);
+    left: cn(0);
+  }
+  .wrap-map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 111;
+    
+  }
 }
-   
 </style>

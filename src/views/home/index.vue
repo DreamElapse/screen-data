@@ -123,15 +123,31 @@
           <div class="data">
             <ul>
               <li>
-                <img src="https://img.gaolvzongheng.com/img-static/user.4dba7aadc99d99d2.png" />
+                <img src="../../asset/images/icon_all.png" />
                 <div class="u-m">
                   <div class="data-des">
                     <numberRolling
                       itemClass="nbscroll1"
-                      :number="historyData.mealUserNum"
+                      :number="userOrigin.newOrder"
                       :size="28"
                       :width="16"
                       :fontWeight="600"
+                      color="#fff"
+                    ></numberRolling>
+                  </div>
+                  <div class="label">累计订单量</div>
+                </div>
+              </li>
+              <li>
+                <img src="../../asset/images/icon_user.png" />
+                <div class="u-m">
+                  <div class="data-des">
+                    <numberRolling
+                      itemClass="nbscroll2"
+                      :number="todayData.mealUserNum"
+                      :size="28"
+                      :width="16"
+                      fontWeight="600"
                       color="#fff"
                     ></numberRolling>
                   </div>
@@ -139,35 +155,17 @@
                 </div>
               </li>
               <li>
-                <img src="https://img.gaolvzongheng.com/img-static/train.dee4fb3057fb6bdf.png" />
+                <img src="../../asset/images/icon_account.png" />
                 <div class="u-m">
-                  <div class="data-des">
-                    <numberRolling
-                      itemClass="nbscroll2"
-                      :number="historyData.trainNum"
-                      :size="28"
-                      :width="16"
-                      fontWeight="600"
-                      color="#fff"
-                    ></numberRolling>
-                  </div>
-                  <div class="label">累计服务车次</div>
-                </div>
-              </li>
-              <li>
-                <img src="https://img.gaolvzongheng.com/img-static/pie.d964c6405a6250a1.png" />
-                <div class="u-m">
-                  <div class="data-des">{{ historyData.amountRate }}%</div>
-                  <div class="label">成交率</div>
+                  <div class="data-des">{{ todayData.amount }}</div>
+                  <div class="label">累计销售额</div>
                 </div>
               </li>
             </ul>
           </div>
-          <div class="b3"></div>
-          <div class="amount-tit-des">
-            高旅数字餐饮销售总额(元)
-          </div>
-          <div class="b4"></div>
+          <p class="flex-30"></p>
+          <div class="amount-tit-des">今日销售金额(元)</div>
+          <p class="flex-20"></p>
           <div class="inner">
             <div class="number-rolling-wrap1">
               <ul class="number-rolling">
@@ -186,54 +184,55 @@
               </ul>
             </div>
           </div>
+          <p class="flex-15"></p>
+          <p class="yestoday-num">昨日销售金额:￥{{toThousands(113311100)}}</p>
         </div>
         <!--地图-->
         <div class="center-sec center-middle">
-          <map-data ref="map" chartId="map"> </map-data>
+          <map-data ref="map" chartId="map"></map-data>
         </div>
         <div class="center-sec center-bottom">
-          <ul>
-            <li>
-              <div class="amount">
-                <numberRolling
-                  itemClass="nbscroll3"
-                  :number="todayData.amount"
-                  :size="28"
-                  :width="16"
-                  :fontWeight="600"
-                  color="#fff"
-                ></numberRolling>
-              </div>
-              <div class="label">今日销售额(元)</div>
-            </li>
-            <li>
-              <div class="amount">
-                <numberRolling
-                  itemClass="nbscroll4"
-                  :number="todayData.mealUserNum"
-                  :size="28"
-                  :width="16"
-                  :fontWeight="600"
-                  color="#fff"
-                ></numberRolling>
-              </div>
-              <div class="label">今日用户量</div>
-            </li>
-            <li>
-              <div class="amount">
-                <numberRolling
-                  itemClass="nbscroll5"
-                  :number="userOrigin.newOrder"
-                  :size="28"
-                  :width="16"
-                  :fontWeight="600"
-                  color="#fff"
-                ></numberRolling>
-              </div>
-              <div class="label">今日订单量</div>
-            </li>
-          </ul>
-
+          <div class="data-box">
+            <div class="bottom-data-title">
+              <span class="left-icon"></span>
+              <span class="title-text">出乘车辆</span>
+            </div>
+            <div class="data-row">
+              <p class="left">
+                <span class="icon"></span>
+                <span class="text">今日出乘</span>
+                <span class="num">100</span>
+                <span class="unit">辆</span>
+              </p>
+              <p class="right">
+                <span class="icon"></span>
+                <span class="text">昨日出乘</span>
+                <span class="num">100</span>
+                <span class="unit">辆</span>
+              </p>
+            </div>
+          </div>
+          <div class="data-box">
+            <div class="bottom-data-title">
+              <span class="left-icon"></span>
+              <span class="title-text">担当车底</span>
+            </div>
+            <div class="data-row">
+              <p class="left">
+                <span class="icon"></span>
+                <span class="text">今日出乘</span>
+                <span class="num">100</span>
+                <span class="unit">辆</span>
+              </p>
+              <p class="right">
+                <span class="icon"></span>
+                <span class="text">昨日出乘</span>
+                <span class="num">100</span>
+                <span class="unit">辆</span>
+              </p>
+            </div>
+          </div>
+            
         </div>
       </div>
       <div class="right-content main-content">
@@ -259,6 +258,10 @@
                 <span class="left-icon"></span>
                 <span class="title-text">订单来源</span>
               </p>
+            </div>
+
+            <div class="sec-data">
+              <pie-full ref="pieFull" chartId="pie-full"> </pie-full>
             </div>
           </div>
         </div>
@@ -321,13 +324,15 @@ import dayjs from 'dayjs';
 import cssSeamlessScroll from 'vue-seamless-scroll';
 
 import numberRolling from '@/components/number-rolling/index.vue';
-import MapData from './components/map-data'
+import MapData from './components/map-data1'
 import BarData from './components/bar-data'
 import LineData from './components/line-data'
 import PieData from './components/pie-data'
+import PieFull from './components/pie-full'
 import DataScroll from './components/data-scroll'
 import OrderScroll from './components/order-scroll'
 // import MapInfo from './components/map';
+
 
 
 
@@ -398,6 +403,7 @@ export default {
     BarData,
     LineData,
     PieData,
+    PieFull,
     DataScroll,
     cssSeamlessScroll,
     OrderScroll
@@ -563,6 +569,7 @@ export default {
       this.$refs.bar && this.$refs.bar.drawBar({xAx: [], series: []})
       this.$refs.line && this.$refs.line.drawLine({xAx: [], series: []})
       this.$refs.pie && this.$refs.pie.drawPie([]) // params:[{value: 10, name: 'xxx'}]
+      this.$refs.pieFull && this.$refs.pieFull.drawPie([], '20') // params:[{value: 10, name: 'xxx'}]
 
     })
 
