@@ -17,6 +17,8 @@ axios.defaults.timeout = 1000 * 30 // 请求超时5秒
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8' // 设置post请求是的header信息
 axios.defaults.withCredentials = false // 如果你要用到session验证码功能，让请求携带cookie
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers['auth-type'] = 'SCREEN_PC_LOGIN';
+// axios.defaults.headers['auth-type'] = 'PC_USERNAME_PASSWORD';
 // http request 拦截器
 axios.interceptors.request.use(
   config => {

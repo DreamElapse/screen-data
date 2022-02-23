@@ -86,7 +86,7 @@
           杭州: [[120.21201, 30.2084], 1534],
         }
 
-        let colors = ['#82b6fc', '#53f7ff']
+        let colors = ['#82b6fc', '#FFCC66']
         return this.dataHandle(geoGpsMap, geoCoordMap, colors)
       },
       dataHandle(geoGpsMap, geoCoordMap, colors) {
@@ -265,14 +265,14 @@
                     period: 4, // 箭头指向速度，值越小速度越快
                     trailLength: 0.02, // 特效尾迹长度[0,1]值越大，尾迹越长重
                     symbol: 'arrow', // 箭头图标
-                    symbolSize: 5, // 图标大小
+                    symbolSize: 4, // 图标大小
                   },
                   lineStyle: {
                     normal: {
                       color: colors[1],
-                      width: 0.3, // 尾迹线条宽度
-                      opacity: 0.6, // 尾迹线条透明度
-                      curveness: .2 // 尾迹线条曲直度
+                      width: 2, // 尾迹线条宽度
+                      opacity: 0.4, // 尾迹线条透明度
+                      curveness: 0.3 // 尾迹线条曲直度
                     }
                   },
                   data: convertToLineData(mapData, geoGpsMap)

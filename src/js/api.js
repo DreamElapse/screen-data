@@ -24,6 +24,18 @@ export default {
   orderAnalyse:(type,status)=>`/screen/v1/base_data/orderAnalyse/${type}/${status}`,
   recentSales:(type)=>`/screen/v1/base_data/recentSales/${type}`,
   recentOrders:(type)=>`/screen/v1/base_data/recentOrders/${type}`,
-  recentUsers:(type)=>`/screen/v1/base_data/recentUsers/${type}`
+  recentUsers:(type)=>`/screen/v1/base_data/recentUsers/${type}`,
+
+  // 2022-02-20 首页接口
+  LOGIN: `/api/v1/user/login`, // 登录
+  getSevenData: (trainNo) => `/screen/sevenDays/${trainNo}`, // get 近7日数据统计(销售额，订单量，用户量)
+  goodsSalesRate: `/screen/category/sale`, // get 商品品类销售额占比
+  getGoodsSalesRank: `/screen/product/sale/rank`, // get 商品销售TOP10
+  trainOrderRank: `/screen/today/train/order/rank`, // get 今日车底下单TOP10
+  getBaseData: (userId) => `/api/v1/screen/websocket/${userId}`, // websocket get 基础数据
+  trainWork: `/api/v1/railway/screen/ride/statistical`, // get 出乘统计
+  disinfect: `/api/v1/railway/screen/disinfect/statistics`, // get 消毒统计
+  getTrainList: `/api/v1/railway/base_railway/query/menu`, // get 车底列表
+  getCateList: `/api/v1/provider/product/category/menu`, // get 商品品类列表
 
 };

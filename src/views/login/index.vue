@@ -29,6 +29,7 @@ export default {
     return {
       username: '',
       password: '',
+      loging: false
     };
   },
   methods: {
@@ -41,21 +42,39 @@ export default {
         Toast('请输入用户密码');
         return;
       }
-      this.$post(api.login, {
-        userName: this.username,
+      if(this.loging) return
+      this.loging = true
+      setTimeout(() => {
+        this.loging = false
+      }, 1500)
+      this.$post(api.LOGIN, {
+        username: this.username,
         password: md5(this.password),
-        clientType: 1,
       }).then(res => {
-        let data = res;
-        if (data.code === 100000) {
-          sessionStorage.setItem('Token', data.data);
+        if (res.code === 100000) {
+          sessionStorage.setItem('Token', res.data.token);
+          sessionStorage.setItem('userInfo', JSON.stringify(res.data.userInfo));
           this.$router.push({ name: 'home' });
-        } else if (data.code === 301039) {
-          this.$message.error('账号无权限，请联系管理员授权');
         } else {
-          this.$message.error(data.msg);
+          this.$message.error(res.msg, 3);
         }
-      });
+      })
+
+      // this.$post(api.login, {
+      //   userName: this.username,
+      //   password: md5(this.password),
+      //   clientType: 1,
+      // }).then(res => {
+      //   let data = res;
+      //   if (data.code === 100000) {
+      //     sessionStorage.setItem('Token', data.data);
+      //     this.$router.push({ name: 'home' });
+      //   } else if (data.code === 301039) {
+      //     this.$message.error('账号无权限，请联系管理员授权');
+      //   } else {
+      //     this.$message.error(data.msg);
+      //   }
+      // });
     },
   },
   beforeCreate() {},

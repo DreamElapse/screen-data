@@ -8,10 +8,10 @@
       <div class="select-box" style="color:#fff">
         <span>铁路局</span>
         <div class="select">
-          <input v-model="selectContext" class="context" @input="inputTrain" @click.stop="showSelect = true">
-          <span :class="['icon', {'active': showSelect}]"></span>
-          <div :class="['select-list', {'active': showSelect}]">
-            <span v-for="(item, index) in areaTempList" :key="index" class="select-item" @click.stop="selectItem(item, index)">{{item}}</span>
+          <input v-model="selectOrg" class="context" @input="(value) => inputSelect(value, 'org')" @click.stop="showSelect = 'org'">
+          <span :class="['icon', {'active': showSelect === 'org'}]"></span>
+          <div :class="['select-list', {'active': showSelect === 'org'}]">
+            <span v-for="(item, index) in areaTempList" :key="index" class="select-item" @click.stop="selectItem(item, index, 'org')">{{item}}</span>
           </div>
         </div>
       </div>
@@ -19,8 +19,9 @@
       
     <!--页面内容-->
     <div class="page-main">
+      <!--页面左侧模块-->
       <div class="left-content main-content">
-        <!--左一小数据模块-->
+        <!--左顶部小数据模块-->
         <div class="small-sec left-top">
           <!--模块标题-->
           <div class="sec-title">
@@ -51,7 +52,7 @@
           </div>
         </div>
 
-        <!--左二小数据模块-->
+        <!--左中部小数据模块-->
         <div class="small-sec left-middle">
           <!--模块标题-->
           <div class="sec-title">
@@ -67,10 +68,10 @@
               <div class="train-select" style="color:#fff">
                 <span>车底</span>
                 <div class="select">
-                  <input v-model="selectContext" class="context" @input="inputTrain" @click.stop="showSelect = true">
-                  <span :class="['icon', {'active': showSelect}]"></span>
-                  <div :class="['select-list', {'active': showSelect}]">
-                    <span v-for="(item, index) in areaTempList" :key="index" class="select-item" @click.stop="selectItem(item, index)">{{item}}</span>
+                  <input v-model="selectTrain" class="context" @input="(value) => inputSelect(value, 'train')" @click.stop="showSelect = 'train'">
+                  <span :class="['icon', {'active': showSelect === 'train'}]"></span>
+                  <div :class="['select-list', {'active': showSelect === 'train'}]">
+                    <span v-for="(item, index) in trainTempList" :key="index" class="select-item" @click.stop="selectItem(item, index, 'train')">{{item}}</span>
                   </div>
                 </div>
               </div>
@@ -82,7 +83,7 @@
           
 
         </div>
-        <!--左三小数据模块-->
+        <!--左底部小数据模块-->
         <div class="small-sec left-bottom">
           <!--模块标题-->
           <div class="sec-title">
@@ -118,7 +119,9 @@
           </div>
         </div>
       </div>
+      <!--页面中部模块-->
       <div class="center-content main-content">
+        <!--中顶部小数据模块-->
         <div class="center-sec center-top">
           <div class="data">
             <ul>
@@ -187,10 +190,11 @@
           <p class="flex-15"></p>
           <p class="yestoday-num">昨日销售金额:￥{{toThousands(113311100)}}</p>
         </div>
-        <!--地图-->
+        <!--中地图-->
         <div class="center-sec center-middle">
           <map-data ref="map" chartId="map"></map-data>
         </div>
+        <!--中底部小数据模块-->
         <div class="center-sec center-bottom">
           <div class="data-box">
             <div class="bottom-data-title">
@@ -220,13 +224,13 @@
             <div class="data-row">
               <p class="left">
                 <span class="icon"></span>
-                <span class="text">今日出乘</span>
+                <span class="text">今日担当车底</span>
                 <span class="num">100</span>
                 <span class="unit">辆</span>
               </p>
               <p class="right">
                 <span class="icon"></span>
-                <span class="text">昨日出乘</span>
+                <span class="text">昨日担当车底</span>
                 <span class="num">100</span>
                 <span class="unit">辆</span>
               </p>
@@ -235,7 +239,9 @@
             
         </div>
       </div>
+      <!--页面右侧模块-->
       <div class="right-content main-content">
+        <!--右顶部小数据模块-->
         <div class="small-sec right-top">
           <div class="top-left">
             <!--模块标题-->
@@ -265,6 +271,7 @@
             </div>
           </div>
         </div>
+        <!--右中部小数据模块-->
         <div class="small-sec right-middle">
           <!--模块标题-->
           <div class="sec-title">
@@ -280,10 +287,10 @@
               <div class="train-select" style="color:#fff">
                 <span>品类</span>
                 <div class="select">
-                  <input v-model="selectContext" class="context" @input="inputTrain" @click.stop="showSelect = true">
-                  <span :class="['icon', {'active': showSelect}]"></span>
-                  <div :class="['select-list', {'active': showSelect}]">
-                    <span v-for="(item, index) in areaTempList" :key="index" class="select-item" @click.stop="selectItem(item, index)">{{item}}</span>
+                  <input v-model="selectCate" class="context" @input="(value) => inputSelect(value, 'cate')" @click.stop="showSelect = 'cate'">
+                  <span :class="['icon', {'active': showSelect === 'cate'}]"></span>
+                  <div :class="['select-list', {'active': showSelect === 'cate'}]">
+                    <span v-for="(item, index) in cateTempList" :key="index" class="select-item" @click.stop="selectItem(item, index, 'cate')">{{item}}</span>
                   </div>
                 </div>
               </div>
@@ -293,6 +300,7 @@
             </div>
           </div>
         </div>
+        <!--中底部小数据模块-->
         <div class="small-sec right-bottom">
           <!--模块标题-->
           <div class="sec-title">
@@ -369,17 +377,21 @@ export default {
       week: '',
       area: 0,
       areaList: ['全部', '南昌局', '广州局', '北京局'],
+      trainList: [],
+      cateList: [],
       areaTempList: [],
+      trainTempList: [],
+      cateTempList: [],
       timer1: '',
       timer2: '',
       timer3: '',
-      showSelect: false,
-      selectContext: '',
+      showSelect: '',
+      selectOrg: 0,
+      selectTrain: '',
+      selectCate: '',
       epidemic,
-      historyData: {}, //GVM
       numbers: [0, '0', 0, 0, 0, ',', 0, 0, 0, '.', 0, 0],
-      todayData: {}, //今日数据
-      currentOrder: [], //实时订单
+      todayData: {},
       userOrigin: {}, //用户来源分布
       goodsSalesRank: [
         { name: '矿泉水', cate: '水', num: '100', money: '100.00' },
@@ -431,46 +443,151 @@ export default {
       return week;
     },
 
-    inputTrain() {
+    inputOrg() {
       // this.showSelect = true
       this.areaTempList = this.areaList.filter(item => {
         return item.title.includes(this.selectContext)
       })
     },
-    openSelect() {
-      this.showSelect = true
+    inputTrain() {
+      // this.showSelect = true
+      this.areaTempList = this.trainList.filter(item => {
+        return item.title.includes(this.selectTrain)
+      })
+    },
+    inputSelect(value, type) {
+      if(type === 'org') {
+        this.areaTempList = this.orgList.filter(item => {
+          return item.includes(this.selectOrg)
+        })
+      } else if(type === 'train') {
+        this.trainTempList = this.trainList.filter(item => {
+          return item.includes(this.selectTrain)
+        })
+      } else {
+        this.cateTempList = this.cateList.filter(item => {
+          return item.includes(this.selectCate)
+        })
+      }
+      
     },
     closeSelect() {
       this.showSelect = false
     },
-    selectItem(item, index) {
+    selectItem(item, index, type) {
       this.showSelect = false
-      this.$router.push({ name: 'home', query: { area: index } });
-      this.selectContext = item
-      // this.getOrderNumCompare()
+      if(type === 'org'){
+        this.selectOrg = index
+        this.$router.push({ name: 'home', query: { area: index } });
+      } else if (type === 'train') {
+        this.selectTrain = item
+      } else {
+        this.selectCate = item
+      }
     },
-    getHistoryData() {
-      this.$get(api.historyData(this.area)).then(res => {
+    // 获取车底
+    getTrainList() {
+      this.$get(api.getTrainList)
+      .then(res => {
+        if(res.code == 100000 && res.data) {
+          // categoryId,categoryName,sale
+          this.trainLsit = res.data.map(item => {
+            return item.trainNo
+          })
+          this.trainTempLsit = res.data.map(item => {
+            return item.trainNo
+          })
+          console.log(res.data)
+        }
+      })
+    },
+    // 获取商品品类列表
+    getCateList() {
+      this.$get(api.getCateList)
+      .then(res => {
+        if(res.code == 100000 && res.data) {
+          this.cateList = res.data.map(item => {
+            return item.cateName
+          })
+          this.cateTempList = res.data.map(item => {
+            return item.cateName
+          })
+        }
+      })
+    },
+    // 近7日数据
+    getSevenData() {
+      this.$get(api.getSevenData(this.selectTrain))
+      .then(res => {
         if (res.code == 100000) {
-          this.historyData = res.data;
-          this.buildData(res.data.gmv.toFixed(2).toString());
+          let arr = res.data.sales // figure, expression
+          console.log(arr, '7日sales')
+          let arr1 = res.data.users
+          let arr2 = res.data.orderQuantity
+          console.log(arr1, arr2, 11)
         }
       });
     },
-    //实时订单
-    getCurrentOrder(time) {
-      this.$get(api.currentOrder(this.area, time)).then(res => {
-        if (res.code == 100000) {
-          let arr = res.data.slice(-4);
-          this.currentOrder = this.currentOrder.slice(0, 4 - arr.length);
-          arr.forEach(item => {
-            this.currentOrder.unshift(item);
-          });
+    goodsSalesRate() {
+      this.$get(api.goodsSalesRate)
+      .then(res => {
+        if(res.code == 100000) {
+          // categoryId,categoryName,sale
+          console.log(res.data)
+        }
+      })
+    },
+    getGoodsSalesRank() {
+      this.$get(api.getGoodsSalesRank)
+      .then(res => {
+        if(res.code == 100000) {
+          // goodName,categoryName,goodsCount,sale
+          console.log(res.data)
+        }
+      })
+    },
+    trainOrderRank() {
+      this.$get(api.trainOrderRank)
+      .then(res => {
+        if(res.code == 100000) {
+          // trainNo,orderCount,steward,sale
+          console.log(res.data)
+        }
+      })
+    },
+    // websocket获取基础数据
+    getBaseData() {
+      let baseUrl = process.env.VUE_APP_CHAT_URL
+      let userInfo = JSON.parse(sessionStorage.getItem('userInfo'))
+      let userId = userInfo.id+'-SCREEN_PC_LOGIN'
+      let ws = new WebSocket(baseUrl+api.getBaseData(userId));
 
-          //
-        }
-      });
+      ws.onopen = function(evt) { 
+        console.log("Connection open ..."); 
+        // ws.send("Hello WebSockets!");
+      };
+
+      ws.onmessage = function(evt) {
+        console.log( "Received Message: " + evt.data);
+        // ws.close();
+      };
+
+      ws.onclose = function(evt) {
+        console.log("Connection closed.");
+      };      
     },
+    getTrainWork() {
+      this.$get(api.getTrainWork)
+      .then(res => {
+        if(res.code == 100000) {
+          // trainNo,orderCount,steward,sale
+          console.log(res.data)
+        }
+      })
+    },
+  
+
+    
     toThousands(num) {
       return (num || 0).toString().replace(/(\d)(?=(?:\d{3})+$)/g, '$1,');
     },
@@ -518,28 +635,6 @@ export default {
       this.$get(api.userSource(this.area)).then(res => {
         if (res.code == 100000) {
           this.userOrigin = res.data;
-          //let { userSource } = res.data;
-          // if (this.area == 0) {
-          //   let arr = [
-          //     { value: this.userOrigin.gzUser, name: '广州局', itemStyle: { color: '#2671F7' } },
-          //     { value: this.userOrigin.ncUser, name: '南昌局', itemStyle: { color: '#38E4B7' } },
-          //   ];
-            // this.$refs.distribution.drawPie(arr);
-          // } else {
-          //   console.log(this.ORDERTYPE);
-          //   let arr = [];
-          //   res.data.userSource.forEach(item => {
-          //     arr.push({
-          //       value: item.userNum,
-          //       name: this.ORDERTYPE[item.userSource],
-          //       itemStyle: {
-          //         color: this.COLORS[item.userSource],
-          //       },
-          //     });
-          //   });
-            
-            // this.$refs.distribution.drawPie(arr);
-          // }
         }
       });
     },
@@ -551,21 +646,22 @@ export default {
       this.$router.push({ name: 'login' });
       return;
     }
+
+    this.getTrainList()
+    this.getCateList()
   },
 
   mounted() {
     let { area } = this.$route.query;
-    this.selectContext = this.areaList[area || 0]
+    this.selectOrg = this.areaList[area || 0]
     this.area = area || 0;
     this.draw()
     this.$nextTick(() => {
       // 获取各模块数据
-      //获取总的历史数据
-      this.getHistoryData();
-      //实时订单
-      this.getCurrentOrder(1200);
+      // 近7日数据统计
+      this.getSevenData()
       //今日数据
-      this.getTodayData();
+      // this.getTodayData();
       this.$refs.bar && this.$refs.bar.drawBar({xAx: [], series: []})
       this.$refs.line && this.$refs.line.drawLine({xAx: [], series: []})
       this.$refs.pie && this.$refs.pie.drawPie([]) // params:[{value: 10, name: 'xxx'}]
